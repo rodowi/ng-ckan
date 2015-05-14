@@ -20,9 +20,11 @@ angular.module('ngCkanApp')
         query = "title:(" + query + "*)";
       }
 
+      $scope.searching      = true;
       ckanService.listDatasets( $scope.start, query ).then( function ( result ) {
         $scope.datasets     = result.datasets;
         $scope.resultsCount = result.resultsCount;
+        $scope.searching    = false;
       });
     };
 
