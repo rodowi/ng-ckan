@@ -14,7 +14,7 @@ module.exports = function(config) {
     basePath: '../',
 
     // testing framework to use (jasmine/mocha/qunit/...)
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine-jquery','jasmine'],
 
     // list of files / patterns to load in the browser
     files: [
@@ -31,8 +31,15 @@ module.exports = function(config) {
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',
-      'test/mock/**/*.js',
-      'test/spec/**/*.js'
+      'test/spec/**/*.js',
+
+      // fixtures
+      {
+        pattern   : 'test/mock/*.json',
+        watched   : true,
+        served    : true,
+        included  : false
+      }
     ],
 
     // list of files / patterns to exclude
@@ -56,6 +63,7 @@ module.exports = function(config) {
 
     // Which plugins to enable
     plugins: [
+      'karma-jasmine-jquery',
       'karma-phantomjs-launcher',
       'karma-jasmine'
     ],
