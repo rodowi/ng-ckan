@@ -17,7 +17,9 @@ angular.module('ngCkanApp')
       if ( !query ) {
         query = "";
       } else {
-        query = "title:(" + query + " OR " + query + "*)";
+        var exp = query.split(" ").join( "* OR " );
+        query   = query.split(" ").join( " OR " );
+        query   = "title:(" + query + " OR " + exp + "*)";
       }
 
       $scope.searching      = true;
@@ -26,7 +28,7 @@ angular.module('ngCkanApp')
         $scope.resultsCount = result.resultsCount;
         $scope.searching    = false;
       });
-    };
+    }
 
     $scope.search();
   });
