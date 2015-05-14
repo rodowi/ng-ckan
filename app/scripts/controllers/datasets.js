@@ -12,17 +12,23 @@ angular.module('ngCkanApp')
 
     $scope.start = 0;
 
-    ckanService.listDatasets($scope.start)
-      .then(function(result) {
-        $scope.datasets = result.datasets;
+    $scope.search = function () {
+      var query   = $scope.keyword;
+      if ( !query ) {
+        query = "";
+      } else {
+        var exp = query.split(" ").join( "* OR " );
+        query   = query.split(" ").join( " OR " );
+        query   = "title:(" + query + " OR " + exp + "*)";
+      }
+
+      $scope.searching      = true;
+      ckanService.listDatasets( $scope.start, query ).then( function ( result ) {
+        $scope.datasets     = result.datasets;
         $scope.resultsCount = result.resultsCount;
+        $scope.searching    = false;
       });
+    }
 
-    $scope.query = function(query) {
-      return _.filter(this.datasets, function(dataset) {
-        return  !_.isNull(dataset.title.match(query)) ||
-                !_.isNull(dataset.notes.match(query));
-      });
-    };
-
+    $scope.search();
   });
