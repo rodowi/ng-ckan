@@ -17,7 +17,7 @@ angular.module('ngCkanApp')
       if ( !query ) {
         query = "";
       } else {
-        query = "title:(" + query + "*)";
+        query = "title:(" + query + " OR " + query + "*)";
       }
 
       $scope.searching      = true;
