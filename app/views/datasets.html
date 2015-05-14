@@ -20,7 +20,9 @@
               <div class="col col-9 alpha">
                 <div class="col-inner">
                   <div class="search">
-                    <input type="text" class="form-control" search controller="DatasetsCtrl" update="datasets" ng-model="search" placeholder="Buscar">
+                    <form ng-submit="search()">
+                      <input type="text" class="form-control" ng-model="keyword" placeholder="Buscar">
+                    </form>
                   </div>
                 </div>
               </div>
@@ -36,7 +38,7 @@
             </div>
           </div>
           <div class="datasets-list">
-            <a href="#/conjuntos/{{dataset.name}}" class="dataset-item" ng-repeat="dataset in datasets | filter:search">
+            <a href="#/conjuntos/{{dataset.name}}" class="dataset-item" ng-repeat="dataset in datasets">
               <div class="dataset-trending-flag">
                 <img ng-src="http://datos.gob.mx/assets/svg/icon-trending-green.svg" alt="">
               </div>
@@ -62,4 +64,3 @@
   </div>
 
 </section>
-

@@ -44,8 +44,11 @@ angular.module('ngCkanApp')
       return group;
     }
 
-    this.listDatasets = function(start) {
-      return $http.get(baseUrl + 'package_search?q=&rows=10&start=' + start).then(cacheDatasets);
+    this.listDatasets = function(start, query) {
+      if ( !query ) {
+        query = "";
+      }
+      return $http.get(baseUrl + 'package_search?q=' + query + '&rows=10&start=' + start).then(cacheDatasets);
     };
 
     this.showDataset = function(datasetId) {
@@ -69,4 +72,3 @@ angular.module('ngCkanApp')
     };
 
   });
-
