@@ -1,2 +1,7 @@
 @import "http://datos.gob.mx/css/main.css";
 // @import "http://localhost:4000/css/main.css";
+
+.filters-list               { margin-top: 20px; }
+.filters-list .btn-dismiss  { background: none; border: none; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-weight: 700; font-size: 21px;
+                            text-shadow: 0 1px 0 #fff; opacity: 0.2; line-height: 1; cursor: pointer; padding: 0; }
+.filter-item                { background-color: #eee; padding: 5px; padding-left: 10px; font-weight: 400; }
