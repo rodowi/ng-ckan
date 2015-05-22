@@ -10,6 +10,7 @@
 angular.module( 'ngCkanApp' )
   .controller( 'DatasetsCtrl', function ( $scope, $location, ckanService ) {
     var query       = "",
+        search      = $location.search(),
         retrieve    = function () {
           $scope.searching      = true;
           ckanService.listDatasets( $scope.start, query ).then( function ( result ) {
@@ -17,7 +18,18 @@ angular.module( 'ngCkanApp' )
             $scope.resultsCount = result.resultsCount;
             $scope.searching    = false;
           });
+        },
+        setGov      = function ( filter ) {
+          var gob   = filter.charAt( 0 ).toUpperCase() + filter.slice( 1 );
+
+          query       += "+vocab_gov_types:(" + gob + ")";
+          $scope.gov  = gob;
         };
+
+    // Check if there's already a government level filter in the URL
+    if ( search.gob ) {
+      setGov( search.gob );
+    }
 
     $scope.start    = 0;
     $scope.search   = function () {
@@ -37,11 +49,7 @@ angular.module( 'ngCkanApp' )
       query       = "";
       // Check if a government level filter is applied
       if ( route.params.gob ) {
-        var gob = route.params.gob;
-            gob = gob.charAt( 0 ).toUpperCase() + gob.slice( 1 );
-
-        query   += "+vocab_gov_types:(" + gob + ")";
-        $scope.gov      = gob;
+        setGov( route.params.gob );
       }
       // Check if a search query is used
       if ( route.params.search ) {

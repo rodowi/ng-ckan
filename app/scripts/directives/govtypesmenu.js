@@ -14,6 +14,7 @@ angular.module('ngCkanApp')
       link          : function ( scope, element, attrs ) {
         var query   = "",
             gov     = "",
+            search  = $location.search(),
             load    = function () {
               var loadFederal   = true,
                   loadState     = true,
@@ -56,6 +57,11 @@ angular.module('ngCkanApp')
                 });
               }
             };
+
+        // Check if there's already a government level filter in the URL
+        if ( search.gob ) {
+          gov   = search.gob;
+        }
 
         scope.$on( '$routeUpdate', function ( e, route ) {
           query     = "";
