@@ -1,8 +1,8 @@
 <div class="page-sidebar">
   <ul class="page-filters links" role="presentation" aria-hidden="true">
     <li class="page-filters-title">Filtros</li>
-    <li><a href="">Federal</a></li>
-    <li><a href="">Estatal</a></li>
-    <li><a href="">Municipal</a></li>
+    <li ng-show="gov_federal"><a href="" ng-click="filter( $event, 'federal' )">Federal ({{ gov_federal }})</a></li>
+    <li ng-show="gov_state"><a href="" ng-click="filter( $event, 'estatal' )">Estatal ({{ gov_state }})</a></li>
+    <li ng-show="gov_municipal"><a href="" ng-click="filter( $event, 'municipal' )">Municipal ({{ gov_municipal }})</a></li>
   </ul>
 </div>

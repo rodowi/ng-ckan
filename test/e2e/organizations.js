@@ -13,6 +13,12 @@ describe( 'organizations', function() {
 
       angular.module( 'ngCkanApp' )
         .service( 'ckanService', [ '$q', function ( $q ) {
+          this.countDatasets      = function ( query ) {
+            var deferred  = $q.defer();
+            deferred.resolve({ count : 10 });
+            return deferred.promise;
+          };
+
           this.listOrganizations  = function ( start, query ) {
             var deferred  = $q.defer();
             deferred.resolve( data.result );

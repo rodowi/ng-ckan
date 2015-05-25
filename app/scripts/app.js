@@ -23,7 +23,8 @@ angular
       })
       .when('/conjuntos', {
         templateUrl: 'views/datasets.html',
-        controller: 'DatasetsCtrl'
+        controller: 'DatasetsCtrl',
+        reloadOnSearch: false
       })
       .when('/conjuntos/:datasetId', {
         templateUrl: 'views/resources.html',

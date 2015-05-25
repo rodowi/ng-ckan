@@ -44,31 +44,41 @@ angular.module('ngCkanApp')
       return group;
     }
 
-    this.listDatasets = function(start, query) {
+    this.countDatasets      = function ( query ) {
       if ( !query ) {
         query = "";
       }
-      return $http.get(baseUrl + 'package_search?q=' + query + '&rows=10&start=' + start).then(cacheDatasets);
+
+      return $http.get( baseUrl + 'package_search?q=' + query + '&rows=0' ).then( function ( result ) {
+        return result.data.result;
+      });
     };
 
-    this.showDataset = function(datasetId) {
-      return $http.get(baseUrl + 'package_show?id=' + datasetId).then(cacheDataset);
+    this.listDatasets       = function( start, query ) {
+      if ( !query ) {
+        query = "";
+      }
+      return $http.get( baseUrl + 'package_search?q=' + query + '&rows=10&start=' + start ).then( cacheDatasets );
     };
 
-    this.listOrganizations = function() {
-      return $http.get(baseUrl + 'organization_list?all_fields=true').then(cacheOrganizations);
+    this.showDataset        = function( datasetId ) {
+      return $http.get( baseUrl + 'package_show?id=' + datasetId ).then( cacheDataset );
     };
 
-    this.showOrganization = function(organizationId) {
-      return $http.get(baseUrl + 'organization_show?id=' + organizationId).then(cacheOrganization);
+    this.listOrganizations  = function() {
+      return $http.get( baseUrl + 'organization_list?all_fields=true' ).then( cacheOrganizations );
     };
 
-    this.listGroups = function() {
-      return $http.get(baseUrl + 'group_list?all_fields=true').then(cacheGroups);
+    this.showOrganization   = function( organizationId ) {
+      return $http.get( baseUrl + 'organization_show?id=' + organizationId ).then( cacheOrganization );
     };
 
-    this.showGroup = function(groupId) {
-      return $http.get(baseUrl + 'group_show?id=' + groupId).then(cacheGroup);
+    this.listGroups         = function() {
+      return $http.get( baseUrl + 'group_list?all_fields=true' ).then( cacheGroups );
+    };
+
+    this.showGroup          = function ( groupId ) {
+      return $http.get( baseUrl + 'group_show?id=' + groupId ).then( cacheGroup );
     };
 
   });

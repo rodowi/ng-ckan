@@ -35,6 +35,16 @@
                 </div>
               </div>
             </div>
+            <div class="cols-12">
+              <div class="col col-12">
+                <p class="filters-list">
+                  <span ng-show="gov">
+                    <span>Nivel de Gobierno:</span>
+                    <span class="filter-item">{{ gov }} <button class="btn-dismiss" ng-click="clearGov()">x</button></span>
+                  </span>
+                </p>
+              </div>
+            </div>
           </div>
           <div class="datasets-list">
             <p ng-show="searching">Buscando...</p>
