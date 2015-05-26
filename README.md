@@ -1,8 +1,7 @@
-[![Stories in Ready](https://badge.waffle.io/mxabierto/ng-ckan.png?label=ready&title=Ready)](https://waffle.io/mxabierto/ng-ckan)
 # ng-ckan
 _A single-page data catalog._
 
-[![Build Status](https://travis-ci.org/mxabierto/ng-ckan.svg?branch=master)](https://travis-ci.org/mxabierto/ng-ckan)
+[![Stories in Ready](https://badge.waffle.io/mxabierto/ng-ckan.png?label=ready&title=Ready)](https://waffle.io/mxabierto/ng-ckan) [![Build Status](https://travis-ci.org/mxabierto/ng-ckan.svg?branch=master)](https://travis-ci.org/mxabierto/ng-ckan)
 
 This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
 version 0.11.0.
