@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/mxabierto/ng-ckan.png?label=ready&title=Ready)](https://waffle.io/mxabierto/ng-ckan)
 # ng-ckan
 _A single-page data catalog._
 
