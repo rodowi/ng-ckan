@@ -28,8 +28,12 @@
               <div class="col col-3 omega">
                 <div class="col-inner">
                   <div class="form-select">
-                    <select>
-                      <option value="">Ordenar por relevancia</option>
+                    <select ng-model="order" ng-change="sort()">
+                      <option value="">Ordenar por Relevancia</option>
+                      <option value="title_string+asc">Ordenar por Nombre Ascendente</option>
+                      <option value="title_string+desc">Ordenar por Nombre Descendente</option>
+                      <option value="metadata_modified+desc">Ordenar por Última Modificación</option>
+                      <option value="views_recent+desc">Ordenar por Popularidad</option>
                     </select>
                   </div>
                 </div>
