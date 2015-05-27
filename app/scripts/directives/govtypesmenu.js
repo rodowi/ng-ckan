@@ -16,6 +16,7 @@ angular.module('ngCkanApp')
             gov         = "",
             search      = $location.search(),
             currentPage = ( search.page ) ? search.page : 1,
+            currentSort = ( search.sort ) ? search.sort : "",
             load        = function () {
               var loadFederal   = true,
                   loadState     = true,
@@ -68,9 +69,16 @@ angular.module('ngCkanApp')
           search    = $location.search();
           query     = "";
 
-          var page  = ( search.page ) ? search.page : 1;
+          var page  = ( search.page ) ? search.page : 1,
+              sort  = ( search.sort ) ? search.sort : "";
+
           if ( currentPage != page ) {
             currentPage = page;
+            return;
+          }
+
+          if ( currentSort != sort ) {
+            currentSort = sort;
             return;
           }
 
