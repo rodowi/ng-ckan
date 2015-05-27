@@ -68,6 +68,11 @@
               </div>
             </a>
           </div>
+          <div class="table-pagination">
+            <p class="center-text" ng-show="!searching">
+                <pagination class="pagination-sm" max-size="10" boundary-links="true" rotate="false" total-items="resultsCount" items-per-page="limit" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" ng-model="page" ng-change="paginate()"></pagination>
+            </p>
+          </div>
         </div>
       </div>
     </div>

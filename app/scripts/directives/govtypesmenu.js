@@ -12,10 +12,11 @@ angular.module('ngCkanApp')
       templateUrl   : 'views/gov-types-menu.html',
       restrict      : 'E',
       link          : function ( scope, element, attrs ) {
-        var query   = "",
-            gov     = "",
-            search  = $location.search(),
-            load    = function () {
+        var query       = "",
+            gov         = "",
+            search      = $location.search(),
+            currentPage = ( search.page ) ? search.page : 1,
+            load        = function () {
               var loadFederal   = true,
                   loadState     = true,
                   loadMunicipal = true;
@@ -64,7 +65,14 @@ angular.module('ngCkanApp')
         }
 
         scope.$on( '$routeUpdate', function ( e, route ) {
+          search    = $location.search();
           query     = "";
+
+          var page  = ( search.page ) ? search.page : 1;
+          if ( currentPage != page ) {
+            currentPage = page;
+            return;
+          }
 
           // Check if a search query is used
           if ( route.params.search ) {
