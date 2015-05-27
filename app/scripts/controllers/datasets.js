@@ -9,18 +9,18 @@
  */
 angular.module( 'ngCkanApp' )
   .controller( 'DatasetsCtrl', function ( $scope, $location, ckanService ) {
-    var paging      = false,
+    var updating    = false,
         query       = "",
         search      = $location.search(),
         page        = ( search.page ) ? search.page : 1,
         retrieve    = function () {
           $scope.searching      = true;
-          ckanService.listDatasets( ( ( page - 1 ) * $scope.limit ), query ).then( function ( result ) {
+          ckanService.listDatasets( ( ( page - 1 ) * $scope.limit ), query, $scope.order ).then( function ( result ) {
             $scope.datasets     = result.datasets;
             $scope.resultsCount = result.resultsCount;
             $scope.page         = page;
             $scope.searching    = false;
-            paging  = false;
+            updating  = false;
           });
         },
         setGov      = function ( filter ) {
@@ -36,6 +36,7 @@ angular.module( 'ngCkanApp' )
     }
 
     $scope.limit    = ( search.limit ) ? search.limit : 10;
+    $scope.order    = ( search.sort ) ? search.sort : '';
 
     $scope.search   = function () {
       // Set the query in the URL search query
@@ -44,6 +45,16 @@ angular.module( 'ngCkanApp' )
       } else {
         $location.search( "search", null );
       }
+    };
+    $scope.sort     = function () {
+      if ( $scope.order ) {
+        $location.search( "sort", $scope.order );
+      } else {
+        $location.search( "sort", null );
+      }
+
+      updating  = true;
+      retrieve();
     };
     $scope.clearGov = function () {
       $location.search( "gob", null );
@@ -56,13 +67,13 @@ angular.module( 'ngCkanApp' )
         $location.search( "page", null );
       }
 
-      paging  = true;
-      page    = $scope.page;
+      updating  = true;
+      page      = $scope.page;
       retrieve();
     };
 
     $scope.$on( '$routeUpdate', function ( e, route ) {
-      if ( paging ) {
+      if ( updating ) {
         return;
       }
       query       = "";

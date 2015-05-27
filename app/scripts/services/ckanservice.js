@@ -54,11 +54,18 @@ angular.module('ngCkanApp')
       });
     };
 
-    this.listDatasets       = function( start, query ) {
+    this.listDatasets       = function( start, query, sort ) {
       if ( !query ) {
         query = "";
       }
-      return $http.get( baseUrl + 'package_search?q=' + query + '&rows=10&start=' + start ).then( cacheDatasets );
+
+      if ( sort ) {
+        sort  = "&sort=" + sort + "";
+      } else {
+        sort  = "";
+      }
+
+      return $http.get( baseUrl + 'package_search?q=' + query + '&rows=10&start=' + start + sort ).then( cacheDatasets );
     };
 
     this.showDataset        = function( datasetId ) {
