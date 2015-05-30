@@ -97,6 +97,10 @@ module.exports = function (grunt) {
                 '/bower_components',
                 connect.static('./bower_components')
               ),
+              connect().use(
+                '/scripts',
+                connect.static('instrumented/app/scripts')
+              ),
               connect.static(appConfig.app)
             ];
           }
@@ -107,6 +111,15 @@ module.exports = function (grunt) {
           open: true,
           base: '<%= yeoman.dist %>'
         }
+      }
+    },
+
+    // Instrument source code using the istanbul plugin
+    instrument: {
+      files: 'app/scripts/**/*.js',
+      options: {
+        lazy: true,
+        basePath: 'instrumented'
       }
     },
 
@@ -138,11 +151,16 @@ module.exports = function (grunt) {
           src: [
             '.tmp',
             '<%= yeoman.dist %>/{,*/}*',
-            '!<%= yeoman.dist %>/.git{,*/}*'
+            '!<%= yeoman.dist %>/.git{,*/}*',
           ]
         }]
       },
-      server: '.tmp'
+      server: [
+        '.tmp',
+        'instrumented',
+        'test/coverage',
+        'test/reports'
+      ]
     },
 
     // Add vendor prefixed styles
@@ -406,11 +424,14 @@ module.exports = function (grunt) {
       }
     },
 
-    protractor: {
+    protractor_coverage: {
       options: {
         configFile: 'test/protractor.conf.js',
         noColor: false,
-        args: {}
+        coverageDir: 'test/coverage',
+        args: {
+          browser: 'firefox'
+        }
       },
       some_target: {
         options: {
@@ -418,10 +439,27 @@ module.exports = function (grunt) {
           args: {}
         }
       }
+    },
+
+    makeReport: {
+      src: 'test/coverage/**/*.json',
+      options: {
+        type: 'lcov',
+        dir: 'test/reports',
+        print: 'detail'
+      }
+    },
+
+    coveralls: {
+      options: {
+        force: false
+      },
+      target: {
+        src: 'test/reports/lcov.info'
+      }
     }
 
   });
-
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
     if (target === 'dist') {
@@ -448,8 +486,15 @@ module.exports = function (grunt) {
     'wiredep:test',
     'concurrent:test',
     'autoprefixer',
+    'instrument',
     'connect:test',
-    'karma'
+    'karma',
+    'protractor_coverage',
+    'makeReport'
+  ]);
+
+  grunt.registerTask('report', [
+    'coveralls'
   ]);
 
   grunt.registerTask('build', [
