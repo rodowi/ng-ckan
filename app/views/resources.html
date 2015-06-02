@@ -22,24 +22,23 @@
           </div>
           <h5 class="dataset-resources-title">Datos y recursos</h5>
           <div class="dataset-resources-list">
-            <div class="resource-item" ng-repeat="resource in dataset.resources">
+            <a class="resource-item" ng-href="{{resource.url}}" ng-repeat="resource in dataset.resources">
               <div class="resourse-format">
                 <div class="dataset-format {{resource.format}}">
                   {{resource.format}}
                 </div>
               </div>
               <div class="resource-download">
-                <a href="{{resource.url}}">
+                <span>
                   <img src="http://datos.gob.mx/assets/svg/icon-circle-arrow-right-gray.svg" alt="">
-                </a>
+                </span>
               </div>
               <div class="resource-main">
                 <h4>{{resource.name}}</h4>
                 <p>{{resource.description}}</p>
               </div>
-            </div>
+            </a>
           </div>
-
         </div>
       </div>
     </div>
