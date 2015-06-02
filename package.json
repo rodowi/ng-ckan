@@ -24,7 +24,7 @@
     "grunt-istanbul": "^0.2.5",
     "grunt-karma": "^0.10.1",
     "grunt-newer": "^0.8.0",
-    "grunt-ng-annotate": "^0.8.0",
+    "grunt-ng-annotate": "^1.0.1",
     "grunt-protractor-runner": "^1.2.1",
     "grunt-protractor-coverage": "^0.2.13",
     "grunt-svgmin": "^2.0.0",
