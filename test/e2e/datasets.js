@@ -151,17 +151,27 @@ describe( 'datasets', function() {
     expect( content ).toMatch( /Datos y recursos/ );
   });
 
-  // The mouseDown().mouseUp().perform() hack is required for the firefox version of webdriver, in chrome it works with click() only
   it( 'should set the sorting parameter for the datasets', function() {
     browser.get( '/' );
-    browser.actions().click( element( by.model( 'order' ) ) ).click( element( by.css( '.form-select select option[value="title_string+asc"]' ) ) ).mouseDown().mouseUp().perform();
+
+    element( by.css( '.form-select select' ) ).click();
+    element( by.css( '.form-select select option[value="title_string+asc"]' ) ).click();
+
+    // Hack to make the select work on Firefox, for some reason the click does not select the element
+    browser.actions().sendKeys( protractor.Key.ENTER ).perform();
+
     expect( browser.getCurrentUrl() ).toBe( browser.baseUrl + '#/conjuntos?sort=title_string%2Basc' );
   });
 
   it( 'should clear the sorting parameter from the URL', function() {
     browser.get( '/#/conjuntos?sort=title_string%2Basc' );
 
-    browser.actions().click( element( by.model( 'order' ) ) ).click( element( by.css( '.form-select select option[value=""]' ) ) ).mouseDown().mouseUp().perform();
+    element( by.css( '.form-select select' ) ).click();
+    element( by.css( '.form-select select option[value=""]' ) ).click();
+
+    // Hack to make the select work on Firefox, for some reason the click does not select the element
+    browser.actions().sendKeys( protractor.Key.ENTER ).perform();
+
     expect( browser.getCurrentUrl() ).toBe( browser.baseUrl + '#/conjuntos' );
   });
 });
