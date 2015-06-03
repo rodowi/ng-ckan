@@ -36,6 +36,13 @@ describe( 'organizations', function() {
       toMatch( /\d+ instituciones publicando datos abiertos/ );
   });
 
+  it( 'should filter the organizations loaded on the list', function() {
+    element( by.model( 'search' ) ).sendKeys( 'san luis' );
+
+    expect( organizationList.count() ).toEqual( 1 );
+    element( by.model( 'search' ) ).clear();
+  });
+
   it( 'should list organizations', function() {
     expect( organizationList.count() ).toEqual( 29 );
   });
