@@ -10,39 +10,7 @@
 angular.module('ngCkanApp')
   .service('ckanService', function ($http) {
     // AngularJS will instantiate a singleton by calling "new" on this function
-    var baseUrl = 'http://catalogo.datos.gob.mx/api/3/action/',
-        datasets, dataset, organizations, organization, groups, group, resultsCount;
-
-    function cacheDatasets(response) {
-      resultsCount = response.data.result.count;
-      datasets = response.data.result.results;
-      return { 'datasets': datasets, 'resultsCount': resultsCount };
-    }
-
-    function cacheDataset(response) {
-      dataset = response.data.result;
-      return dataset;
-    }
-
-    function cacheOrganizations(response) {
-      organizations = response.data.result;
-      return organizations;
-    }
-
-    function cacheOrganization(response) {
-      organization = response.data.result;
-      return organization;
-    }
-
-    function cacheGroups(response) {
-      groups = response.data.result;
-      return groups;
-    }
-
-    function cacheGroup(response) {
-      group = response.data.result;
-      return group;
-    }
+    var baseUrl = 'http://catalogo.datos.gob.mx/api/3/action/';
 
     this.countDatasets      = function ( query ) {
       if ( !query ) {
@@ -65,27 +33,45 @@ angular.module('ngCkanApp')
         sort  = "";
       }
 
-      return $http.get( baseUrl + 'package_search?q=' + query + '&rows=10&start=' + start + sort ).then( cacheDatasets );
+      return $http.get( baseUrl + 'package_search?q=' + query + '&rows=10&start=' + start + sort ).then( function ( response ) {
+        var resultsCount  = response.data.result.count,
+            datasets      = response.data.result.results;
+
+        return {
+          'datasets': datasets,
+          'resultsCount': resultsCount 
+        };
+      });
     };
 
     this.showDataset        = function( datasetId ) {
-      return $http.get( baseUrl + 'package_show?id=' + datasetId ).then( cacheDataset );
+      return $http.get( baseUrl + 'package_show?id=' + datasetId ).then( function ( response ) {
+        return response.data.result;
+      });
     };
 
     this.listOrganizations  = function() {
-      return $http.get( baseUrl + 'organization_list?all_fields=true' ).then( cacheOrganizations );
+      return $http.get( baseUrl + 'organization_list?all_fields=true' ).then( function ( response ) {
+        return response.data.result;
+      });
     };
 
     this.showOrganization   = function( organizationId ) {
-      return $http.get( baseUrl + 'organization_show?id=' + organizationId ).then( cacheOrganization );
+      return $http.get( baseUrl + 'organization_show?id=' + organizationId ).then( function ( response ) {
+        return response.data.result;
+      });
     };
 
     this.listGroups         = function() {
-      return $http.get( baseUrl + 'group_list?all_fields=true' ).then( cacheGroups );
+      return $http.get( baseUrl + 'group_list?all_fields=true' ).then( function ( response ) {
+        return response.data.result;
+      });
     };
 
     this.showGroup          = function ( groupId ) {
-      return $http.get( baseUrl + 'group_show?id=' + groupId ).then( cacheGroup );
+      return $http.get( baseUrl + 'group_show?id=' + groupId ).then( function ( response ) {
+        return response.data.result;
+      });
     };
 
   });

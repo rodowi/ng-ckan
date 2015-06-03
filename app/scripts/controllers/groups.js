@@ -15,11 +15,4 @@ angular.module('ngCkanApp')
         $scope.groups = result;
       });
 
-    $scope.query = function(query) {
-      return _.filter(this.groups, function(group) {
-        return  !_.isNull(group.display_name.match(query));
-      });
-    };
-
   });
-

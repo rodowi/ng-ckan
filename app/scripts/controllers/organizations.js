@@ -15,11 +15,4 @@ angular.module('ngCkanApp')
         $scope.organizations = result;
       });
 
-    $scope.query = function(query) {
-      return _.filter(this.organizations, function(organization) {
-        return  !_.isNull(organization.display_name.match(query));
-      });
-    };
-
   });
-
