@@ -30,7 +30,14 @@ describe( 'groups', function() {
       toMatch( /\d+ grupos publicando datos abiertos/ );
   });
 
-  it('should list groups', function() {
+  it( 'should filter the groups loaded on the list', function() {
+    element( by.model( 'search' ) ).sendKeys( 'segundo' );
+
+    expect( groupList.count() ).toEqual( 1 );
+    element( by.model( 'search' ) ).clear();
+  });
+
+  it( 'should list groups', function() {
     expect( groupList.count() ).toEqual( 3 );
   });
 
