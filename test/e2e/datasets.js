@@ -64,6 +64,34 @@ describe( 'datasets', function() {
     });
   });
 
+  it( 'should apply a government level filter in the URL and remove two of the three filter elements in the menu', function() {
+    element( by.css( '[ng-show="gov_state"]' ) ).all( by.tagName( 'a' ) ).first().click().then( function () {
+      expect( browser.getCurrentUrl() ).toBe( browser.baseUrl + '#/conjuntos?gob=estatal' );
+
+      expect( element( by.css( '.page-filters' ) ).all( by.css( '.ng-hide' ) ).count() ).toBe( 2 );
+    });
+  });
+
+  it( 'should remove the previously applied government level filtering', function() {
+    element( by.css( '[ng-click="clearGov()"]' ) ).click().then( function () {
+      expect( browser.getCurrentUrl() ).toBe( browser.baseUrl + '#/conjuntos' );
+    });
+  });
+
+  it( 'should apply a government level filter in the URL and remove two of the three filter elements in the menu', function() {
+    element( by.css( '[ng-show="gov_municipal"]' ) ).all( by.tagName( 'a' ) ).first().click().then( function () {
+      expect( browser.getCurrentUrl() ).toBe( browser.baseUrl + '#/conjuntos?gob=municipal' );
+
+      expect( element( by.css( '.page-filters' ) ).all( by.css( '.ng-hide' ) ).count() ).toBe( 2 );
+    });
+  });
+
+  it( 'should remove the previously applied government level filtering', function() {
+    element( by.css( '[ng-click="clearGov()"]' ) ).click().then( function () {
+      expect( browser.getCurrentUrl() ).toBe( browser.baseUrl + '#/conjuntos' );
+    });
+  });
+
   it( 'should update the URL when searching for a given dataset keyword', function() {
     element( by.model( 'keyword' ) ).sendKeys( 'query' );
     element( by.css( '[ng-submit="search()"]' ) ).submit().then( function () {
