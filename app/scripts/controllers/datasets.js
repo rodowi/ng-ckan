@@ -9,8 +9,7 @@
  */
 angular.module( 'ngCkanApp' )
   .controller( 'DatasetsCtrl', function ( $scope, $location, ckanService ) {
-    var updating    = false,
-        query       = "",
+    var query       = "",
         search      = $location.search(),
         page        = ( search.page ) ? search.page : 1,
         retrieve    = function () {
@@ -20,7 +19,6 @@ angular.module( 'ngCkanApp' )
             $scope.resultsCount = result.resultsCount;
             $scope.page         = page;
             $scope.searching    = false;
-            updating  = false;
           });
         },
         setGov      = function ( filter ) {
@@ -52,9 +50,6 @@ angular.module( 'ngCkanApp' )
       } else {
         $location.search( "sort", null );
       }
-
-      updating  = true;
-      retrieve();
     };
     $scope.clearGov = function () {
       $location.search( "gob", null );
@@ -67,15 +62,10 @@ angular.module( 'ngCkanApp' )
         $location.search( "page", null );
       }
 
-      updating  = true;
       page      = $scope.page;
-      retrieve();
     };
 
     $scope.$on( '$routeUpdate', function ( e, route ) {
-      if ( updating ) {
-        return;
-      }
       query       = "";
       // Check if a government level filter is applied
       if ( route.params.gob ) {
@@ -91,9 +81,7 @@ angular.module( 'ngCkanApp' )
         query   += "title:(" + search + " OR " + exp + "*)";
       }
 
-      if ( !$scope.searching ) {
-        retrieve();
-      }
+      retrieve();
     });
     retrieve();
   });
