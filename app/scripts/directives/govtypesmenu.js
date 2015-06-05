@@ -65,42 +65,38 @@ angular.module('ngCkanApp')
             },
             loadOrganizations = function () {
               scope.$watch( 'organizations', function ( data ) {
-                if ( data == "" ) {
-                  return;
-                } else {
-                  var federal       = 0,
-                      state         = 0,
-                      municipal     = 0,
-                      organizations = angular.fromJson( data );
+                var federal       = 0,
+                    state         = 0,
+                    municipal     = 0,
+                    organizations = angular.fromJson( data );
 
-                  for ( var i = 0; i < organizations.length; i++ ) {
-                    if ( /estado-de.*/.test( organizations[i].name ) ) {
-                      state++;
-                    } else if ( /ayuntamiento-de.*/.test( organizations[i].name ) ) {
-                      municipal++;
-                    } else {
-                      federal++;
-                    }
+                for ( var i = 0; i < organizations.length; i++ ) {
+                  if ( /estado-de.*/.test( organizations[i].name ) ) {
+                    state++;
+                  } else if ( /ayuntamiento-de.*/.test( organizations[i].name ) ) {
+                    municipal++;
+                  } else {
+                    federal++;
                   }
+                }
 
-                  scope.gov_federal   = false;
-                  scope.gov_state     = false;
-                  scope.gov_municipal = false;
-                  switch ( gov ) {
-                    case "federal" :
-                      scope.gov_federal   = federal;
-                      break;
-                    case "estatal" :
-                      scope.gov_state     = state;
-                      break;
-                    case "municipal" :
-                      scope.gov_municipal = municipal;
-                      break;
-                    default :
-                      scope.gov_federal   = federal;
-                      scope.gov_state     = state;
-                      scope.gov_municipal = municipal;
-                  }
+                scope.gov_federal   = false;
+                scope.gov_state     = false;
+                scope.gov_municipal = false;
+                switch ( gov ) {
+                  case "federal" :
+                    scope.gov_federal   = federal;
+                    break;
+                  case "estatal" :
+                    scope.gov_state     = state;
+                    break;
+                  case "municipal" :
+                    scope.gov_municipal = municipal;
+                    break;
+                  default :
+                    scope.gov_federal   = federal;
+                    scope.gov_state     = state;
+                    scope.gov_municipal = municipal;
                 }
               });
             },

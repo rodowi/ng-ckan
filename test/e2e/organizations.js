@@ -13,12 +13,6 @@ describe( 'organizations', function() {
 
       angular.module( 'ngCkanApp' )
         .service( 'ckanService', [ '$q', function ( $q ) {
-          this.countDatasets      = function ( query ) {
-            var deferred  = $q.defer();
-            deferred.resolve({ count : 10 });
-            return deferred.promise;
-          };
-
           this.listOrganizations  = function ( start, query ) {
             var deferred  = $q.defer();
             deferred.resolve( data.result );
@@ -26,14 +20,70 @@ describe( 'organizations', function() {
           }
         }]);
     }, data );
-
-    organizationList  = element.all( by.repeater( 'organization in organizations' ) );
   });
 
   it( 'should render organizations when user navigates to /instituciones', function() {
     browser.get( '/#/instituciones' );
     expect( element.all( by.css( '.ng-binding' ) ).first().getText() ).
       toMatch( /\d+ instituciones publicando datos abiertos/ );
+
+    organizationList  = element.all( by.repeater( 'organization in organizations' ) );
+  });
+
+  it( 'should list the government level filtering', function() {
+    expect( element( by.css( '[ng-show="gov_federal"]' ) ).all( by.tagName( 'a' ) ).first().getText() ).toMatch( /Federal *\d*/ );
+    expect( element( by.css( '[ng-show="gov_state"]' ) ).all( by.tagName( 'a' ) ).first().getText() ).toMatch( /Estatal *\d*/ );
+    expect( element( by.css( '[ng-show="gov_municipal"]' ) ).all( by.tagName( 'a' ) ).first().getText() ).toMatch( /Municipal *\d*/ );
+  });
+
+  it( 'should apply a government level filter in the URL and remove two of the three filter elements in the menu', function() {
+    element( by.css( '[ng-show="gov_federal"]' ) ).all( by.tagName( 'a' ) ).first().click().then( function () {
+      expect( browser.getCurrentUrl() ).toBe( browser.baseUrl + '#/instituciones?gob=federal' );
+
+      expect( element( by.css( '.page-filters' ) ).all( by.css( '.ng-hide' ) ).count() ).toBe( 2 );
+    });
+  });
+
+  it( 'should mantain the government filter after a page refresh', function() {
+    browser.refresh();
+    organizationList  = element.all( by.repeater( 'organization in organizations' ) );
+
+    expect( browser.getCurrentUrl() ).toBe( browser.baseUrl + '#/instituciones?gob=federal' );
+    expect( element( by.css( '.page-filters' ) ).all( by.css( '.ng-hide' ) ).count() ).toBe( 2 );
+  });
+
+  it( 'should remove the previously applied government level filtering', function() {
+    element( by.css( '[ng-click="clearGov()"]' ) ).click().then( function () {
+      expect( browser.getCurrentUrl() ).toBe( browser.baseUrl + '#/instituciones' );
+    });
+  });
+
+  it( 'should apply a government level filter in the URL and remove two of the three filter elements in the menu', function() {
+    element( by.css( '[ng-show="gov_state"]' ) ).all( by.tagName( 'a' ) ).first().click().then( function () {
+      expect( browser.getCurrentUrl() ).toBe( browser.baseUrl + '#/instituciones?gob=estatal' );
+
+      expect( element( by.css( '.page-filters' ) ).all( by.css( '.ng-hide' ) ).count() ).toBe( 2 );
+    });
+  });
+
+  it( 'should remove the previously applied government level filtering', function() {
+    element( by.css( '[ng-click="clearGov()"]' ) ).click().then( function () {
+      expect( browser.getCurrentUrl() ).toBe( browser.baseUrl + '#/instituciones' );
+    });
+  });
+
+  it( 'should apply a government level filter in the URL and remove two of the three filter elements in the menu', function() {
+    element( by.css( '[ng-show="gov_municipal"]' ) ).all( by.tagName( 'a' ) ).first().click().then( function () {
+      expect( browser.getCurrentUrl() ).toBe( browser.baseUrl + '#/instituciones?gob=municipal' );
+
+      expect( element( by.css( '.page-filters' ) ).all( by.css( '.ng-hide' ) ).count() ).toBe( 2 );
+    });
+  });
+
+  it( 'should remove the previously applied government level filtering', function() {
+    element( by.css( '[ng-click="clearGov()"]' ) ).click().then( function () {
+      expect( browser.getCurrentUrl() ).toBe( browser.baseUrl + '#/instituciones' );
+    });
   });
 
   it( 'should filter the organizations loaded on the list', function() {
