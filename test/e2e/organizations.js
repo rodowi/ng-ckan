@@ -27,11 +27,11 @@ describe( 'organizations', function() {
         }]);
     }, data );
 
-    browser.get( '/#/instituciones' );
     organizationList  = element.all( by.repeater( 'organization in organizations' ) );
   });
 
   it( 'should render organizations when user navigates to /instituciones', function() {
+    browser.get( '/#/instituciones' );
     expect( element.all( by.css( '.ng-binding' ) ).first().getText() ).
       toMatch( /\d+ instituciones publicando datos abiertos/ );
   });
@@ -49,5 +49,27 @@ describe( 'organizations', function() {
 
   it( 'should display logos', function() {
     expect( element.all( by.css( '.organization-item img' ) ).first().getAttribute( 'alt' ) ).toMatch( 'Logo de' );
+  });
+
+  it( 'should set the sorting parameter for the organizations', function() {
+    element( by.css( '.form-select select' ) ).click();
+    element( by.css( '.form-select select option[value="name+desc"]' ) ).click();
+
+    // Hack to make the select work on Firefox, for some reason the click does not select the element
+    browser.actions().sendKeys( protractor.Key.ENTER ).perform();
+
+    expect( browser.getCurrentUrl() ).toBe( browser.baseUrl + '#/instituciones?sort=name%2Bdesc' );
+  });
+
+  it( 'should clear the sorting parameter from the URL', function() {
+    browser.get( '/#/instituciones?sort=name%2Bdesc' );
+
+    element( by.css( '.form-select select' ) ).click();
+    element( by.css( '.form-select select option[value=""]' ) ).click();
+
+    // Hack to make the select work on Firefox, for some reason the click does not select the element
+    browser.actions().sendKeys( protractor.Key.ENTER ).perform();
+
+    expect( browser.getCurrentUrl() ).toBe( browser.baseUrl + '#/instituciones' );
   });
 });
