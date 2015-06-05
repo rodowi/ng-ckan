@@ -21,11 +21,12 @@ describe( 'groups', function() {
         }]);
     }, data );
 
-    browser.get( '/#/grupos' );
     groupList = element.all( by.repeater( 'group in groups' ) );
   });
 
   it( 'should render groups when user navigates to /groups', function() {
+    browser.get( '/#/grupos' );
+
     expect( element.all( by.css( '.ng-binding' ) ).first().getText() ).
       toMatch( /\d+ grupos publicando datos abiertos/ );
   });
@@ -43,5 +44,27 @@ describe( 'groups', function() {
 
   it( 'should display logos', function() {
     expect( element.all( by.css( '.organization-item img' ) ).first().getAttribute( 'alt' ) ).toMatch( 'Logo de' );
+  });
+
+  it( 'should set the sorting parameter for the groups', function() {
+    element( by.css( '.form-select select' ) ).click();
+    element( by.css( '.form-select select option[value="name+desc"]' ) ).click();
+
+    // Hack to make the select work on Firefox, for some reason the click does not select the element
+    browser.actions().sendKeys( protractor.Key.ENTER ).perform();
+
+    expect( browser.getCurrentUrl() ).toBe( browser.baseUrl + '#/grupos?sort=name%2Bdesc' );
+  });
+
+  it( 'should clear the sorting parameter from the URL', function() {
+    browser.get( '/#/grupos?sort=name%2Bdesc' );
+
+    element( by.css( '.form-select select' ) ).click();
+    element( by.css( '.form-select select option[value=""]' ) ).click();
+
+    // Hack to make the select work on Firefox, for some reason the click does not select the element
+    browser.actions().sendKeys( protractor.Key.ENTER ).perform();
+
+    expect( browser.getCurrentUrl() ).toBe( browser.baseUrl + '#/grupos' );
   });
 });
