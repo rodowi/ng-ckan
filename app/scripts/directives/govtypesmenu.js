@@ -83,9 +83,24 @@ angular.module('ngCkanApp')
                     }
                   }
 
-                  scope.gov_federal   = federal;
-                  scope.gov_state     = state;
-                  scope.gov_municipal = municipal;
+                  scope.gov_federal   = false;
+                  scope.gov_state     = false;
+                  scope.gov_municipal = false;
+                  switch ( gov ) {
+                    case "federal" :
+                      scope.gov_federal   = federal;
+                      break;
+                    case "estatal" :
+                      scope.gov_state     = state;
+                      break;
+                    case "municipal" :
+                      scope.gov_municipal = municipal;
+                      break;
+                    default :
+                      scope.gov_federal   = federal;
+                      scope.gov_state     = state;
+                      scope.gov_municipal = municipal;
+                  }
                 }
               });
             },
