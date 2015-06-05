@@ -25,8 +25,9 @@
               <div class="col col-3">
                 <div class="col-inner">
                   <div class="form-select">
-                    <select>
-                      <option value="">Ordenar por nombre</option>
+                    <select ng-model="order" ng-change="sort()">
+                      <option value="">Ordenar por Nombre Ascendente</option>
+                      <option value="name+desc">Ordenar por Nombre Descendente</option>
                     </select>
                   </div>
                 </div>
