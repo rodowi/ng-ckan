@@ -11,13 +11,17 @@ angular.module('ngCkanApp')
     return {
       templateUrl   : 'views/gov-types-menu.html',
       restrict      : 'E',
+      scope         : {
+        organizations : '@organizations'
+      },
       link          : function ( scope, element, attrs ) {
-        var query       = "",
-            gov         = "",
-            search      = $location.search(),
-            currentPage = ( search.page ) ? search.page : 1,
-            currentSort = ( search.sort ) ? search.sort : "",
-            load        = function () {
+        var query             = "",
+            gov               = "",
+            search            = $location.search(),
+            path              = $location.path(),
+            currentPage       = ( search.page ) ? search.page : 1,
+            currentSort       = ( search.sort ) ? search.sort : "",
+            loadDatasets      = function () {
               var loadFederal   = true,
                   loadState     = true,
                   loadMunicipal = true;
@@ -57,6 +61,50 @@ angular.module('ngCkanApp')
                 ckanService.countDatasets( query + '+vocab_gov_types:Municipal' ).then( function ( result ) {
                   scope.gov_municipal = result.count;
                 });
+              }
+            },
+            loadOrganizations = function () {
+              scope.$watch( 'organizations', function ( data ) {
+                var federal       = 0,
+                    state         = 0,
+                    municipal     = 0,
+                    organizations = angular.fromJson( data );
+
+                for ( var i = 0; i < organizations.length; i++ ) {
+                  if ( /estado-de.*/.test( organizations[i].name ) ) {
+                    state++;
+                  } else if ( /ayuntamiento-de.*/.test( organizations[i].name ) ) {
+                    municipal++;
+                  } else {
+                    federal++;
+                  }
+                }
+
+                scope.gov_federal   = false;
+                scope.gov_state     = false;
+                scope.gov_municipal = false;
+                switch ( gov ) {
+                  case "federal" :
+                    scope.gov_federal   = federal;
+                    break;
+                  case "estatal" :
+                    scope.gov_state     = state;
+                    break;
+                  case "municipal" :
+                    scope.gov_municipal = municipal;
+                    break;
+                  default :
+                    scope.gov_federal   = federal;
+                    scope.gov_state     = state;
+                    scope.gov_municipal = municipal;
+                }
+              });
+            },
+            load              = function () {
+              if ( path == '/instituciones' ) {
+                loadOrganizations();
+              } else {
+                loadDatasets();
               }
             };
 

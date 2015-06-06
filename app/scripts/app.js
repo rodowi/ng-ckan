@@ -33,7 +33,8 @@ angular
       })
       .when('/instituciones', {
         templateUrl: 'views/organizations.html',
-        controller: 'OrganizationsCtrl'
+        controller: 'OrganizationsCtrl',
+        reloadOnSearch: false
       })
       .when('/instituciones/:organizationId', {
         templateUrl: 'views/organization.html',

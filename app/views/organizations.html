@@ -6,9 +6,9 @@
           <div class="page-sidebar">
             <div class="page-info">
               <h2>Instituciones</h2>
-              <p>{{organizations.length}} instituciones publicando datos abiertos</p>
+              <p>{{organizations_displayed}} instituciones publicando datos abiertos</p>
             </div>
-            <gov-types-menu />
+            <gov-types-menu data-organizations="{{ organizations }}" />
           </div>
         </div>
       </div>
@@ -34,10 +34,21 @@
                 </div>
               </div>
             </div>
+            <div class="cols-12">
+              <div class="col col-12">
+                <p class="filters-list">
+                  <span ng-show="gov">
+                    <span>Nivel de Gobierno:</span>
+                    <span class="filter-item">{{ gov }} <button class="btn-dismiss" ng-click="clearGov()">x</button></span>
+                  </span>
+                </p>
+              </div>
+            </div>
           </div>
           <div class="organizations-list">
-            <div class="organization-item" ng-repeat="organization in organizations | filter:search">
-              <div class="inner">
+            <p ng-show="searching">Buscando...</p>
+            <div class="organization-item" ng-repeat="organization in organizations | filter:search" ng-show="!searching">
+              <div class="inner" ng-show="!organization.hide">
                 <a href="#/instituciones/{{organization.name}}">
                   <img src="{{organization.image_display_url}}" alt="Logo de {{organization.display_name}}" />
                   <span>{{ organization.display_name }}</span>
