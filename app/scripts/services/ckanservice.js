@@ -50,8 +50,14 @@ angular.module('ngCkanApp')
       });
     };
 
-    this.listOrganizations  = function() {
-      return $http.get( baseUrl + 'organization_list?all_fields=true' ).then( function ( response ) {
+    this.listOrganizations  = function( sort ) {
+      if ( sort ) {
+        sort  = "&sort=" + sort + "";
+      } else {
+        sort  = "";
+      }
+
+      return $http.get( baseUrl + 'organization_list?all_fields=true' + sort ).then( function ( response ) {
         return response.data.result;
       });
     };
@@ -62,8 +68,14 @@ angular.module('ngCkanApp')
       });
     };
 
-    this.listGroups         = function() {
-      return $http.get( baseUrl + 'group_list?all_fields=true' ).then( function ( response ) {
+    this.listGroups         = function( sort ) {
+      if ( sort ) {
+        sort  = "&sort=" + sort + "";
+      } else {
+        sort  = "";
+      }
+
+      return $http.get( baseUrl + 'group_list?all_fields=true' + sort ).then( function ( response ) {
         return response.data.result;
       });
     };
