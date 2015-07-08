@@ -18,7 +18,7 @@
           <div class="dataset-detail-excerpt">
             <h2>{{dataset.title}}</h2> 
             <p>{{dataset.notes}}</p>
-            <p><strong>Nivel de Gobierno:</strong> {{dataset.gov_type}}</p>
+            <p ng-show="dataset.gov_type.length"><strong>Nivel de Gobierno:</strong> {{dataset.gov_type}}</p>
           </div>
           <h5 class="dataset-resources-title">Datos y recursos</h5>
           <div class="dataset-resources-list">
