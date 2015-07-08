@@ -22,81 +22,112 @@ angular.module('ngCkanApp')
             currentPage       = ( search.page ) ? search.page : 1,
             currentSort       = ( search.sort ) ? search.sort : "",
             loadDatasets      = function () {
-              var loadFederal   = true,
-                  loadState     = true,
-                  loadMunicipal = true;
+              var loadFederal     = true,
+                  loadState       = true,
+                  loadMunicipal   = true,
+                  loadAutonomous  = true;
 
               switch ( gov ) {
+                case "autonomos" :
+                  scope.gov_state       = 0;
+                  scope.gov_municipal   = 0;
+                  scope.gov_federal     = 0;
+                  loadFederal           = false;
+                  loadState             = false;
+                  loadMunicipal         = false;
+                  break;
                 case "federal" :
-                  scope.gov_state     = 0;
-                  scope.gov_municipal = 0;
-                  loadState           = false;
-                  loadMunicipal       = false;
+                  scope.gov_state       = 0;
+                  scope.gov_municipal   = 0;
+                  scope.gov_autonomous  = 0;
+                  loadAutonomous        = false;
+                  loadState             = false;
+                  loadMunicipal         = false;
                   break;
                 case "estatal" :
-                  scope.gov_federal   = 0;
-                  scope.gov_municipal = 0;
-                  loadFederal         = false;
-                  loadMunicipal       = false;
+                  scope.gov_federal     = 0;
+                  scope.gov_municipal   = 0;
+                  scope.gov_autonomous  = 0;
+                  loadAutonomous        = false;
+                  loadFederal           = false;
+                  loadMunicipal         = false;
                   break;
                 case "municipal" :
-                  scope.gov_federal   = 0;
-                  scope.gov_state     = 0;
-                  loadFederal         = false;
-                  loadState           = false;
+                  scope.gov_federal     = 0;
+                  scope.gov_state       = 0;
+                  scope.gov_autonomous  = 0;
+                  loadAutonomous        = false;
+                  loadFederal           = false;
+                  loadState             = false;
                   break;
               }
 
+              if ( loadAutonomous ) {
+                ckanService.countDatasets( query + '+organization:inegi' ).then( function ( result ) {
+                  scope.gov_autonomous  = result.count;
+                });
+              }
               if ( loadFederal ) {
                 ckanService.countDatasets( query + '+vocab_gov_types:Federal' ).then( function ( result ) {
-                  scope.gov_federal   = result.count;
+                  scope.gov_federal     = result.count;
                 });
               }
               if ( loadState ) {
                 ckanService.countDatasets( query + '+vocab_gov_types:Estatal' ).then( function ( result ) {
-                  scope.gov_state     = result.count;
+                  scope.gov_state       = result.count;
                 });
               }
               if ( loadMunicipal ) {
                 ckanService.countDatasets( query + '+vocab_gov_types:Municipal' ).then( function ( result ) {
-                  scope.gov_municipal = result.count;
+                  scope.gov_municipal   = result.count;
                 });
               }
             },
             loadOrganizations = function () {
               scope.$watch( 'organizations', function ( data ) {
-                var federal       = 0,
+                scope.numbers     = true;
+                var autonomous    = 0,
+                    federal       = 0,
                     state         = 0,
                     municipal     = 0,
-                    organizations = angular.fromJson( data );
+                    organizations = ( data ) ? angular.fromJson( data ) : [];
 
                 for ( var i = 0; i < organizations.length; i++ ) {
-                  if ( /estado-de.*/.test( organizations[i].name ) ) {
-                    state++;
-                  } else if ( /ayuntamiento-de.*/.test( organizations[i].name ) ) {
-                    municipal++;
+                  if ( organizations[i].name == "inegi" ) {
+                    autonomous++;
                   } else {
-                    federal++;
+                    if ( /estado-de.*/.test( organizations[i].name ) ) {
+                      state++;
+                    } else if ( /ayuntamiento-de.*/.test( organizations[i].name ) ) {
+                      municipal++;
+                    } else {
+                      federal++;
+                    }
                   }
                 }
 
-                scope.gov_federal   = false;
-                scope.gov_state     = false;
-                scope.gov_municipal = false;
+                scope.gov_autonomous  = false;
+                scope.gov_federal     = false;
+                scope.gov_state       = false;
+                scope.gov_municipal   = false;
                 switch ( gov ) {
+                  case "autonomos" :
+                    scope.gov_autonomous  = autonomous;
+                    break;
                   case "federal" :
-                    scope.gov_federal   = federal;
+                    scope.gov_federal     = federal;
                     break;
                   case "estatal" :
-                    scope.gov_state     = state;
+                    scope.gov_state       = state;
                     break;
                   case "municipal" :
-                    scope.gov_municipal = municipal;
+                    scope.gov_municipal   = municipal;
                     break;
                   default :
-                    scope.gov_federal   = federal;
-                    scope.gov_state     = state;
-                    scope.gov_municipal = municipal;
+                    scope.gov_autonomous  = autonomous;
+                    scope.gov_federal     = federal;
+                    scope.gov_state       = state;
+                    scope.gov_municipal   = municipal;
                 }
               });
             },
@@ -113,6 +144,7 @@ angular.module('ngCkanApp')
           gov   = search.gob;
         }
 
+        scope.numbers = false;
         scope.$on( '$routeUpdate', function ( e, route ) {
           search    = $location.search();
           query     = "";
