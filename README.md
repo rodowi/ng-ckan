@@ -6,6 +6,11 @@ _A single-page data catalog._
 This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
 version 0.11.0.
 
+## First of all
+
+1. Install ruby gem [compass](https://rubygems.org/gems/compass/)
+2. Run `npm install` and `bower install`
+
 ## Build & development
 
 Run `grunt` for building and `grunt serve` for preview.
