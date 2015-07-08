@@ -17,6 +17,7 @@ angular.module( 'ngCkanApp' )
           ckanService.listDatasets( ( ( page - 1 ) * $scope.limit ), query, $scope.order ).then( function ( result ) {
             $scope.datasets     = result.datasets;
             $scope.resultsCount = result.resultsCount;
+            $scope.totalItems   = result.resultsCount - $scope.limit;
             $scope.page         = page;
             $scope.searching    = false;
           });
