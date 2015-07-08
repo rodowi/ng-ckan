@@ -25,7 +25,11 @@ angular.module( 'ngCkanApp' )
         setGov      = function ( filter ) {
           var gob   = filter.charAt( 0 ).toUpperCase() + filter.slice( 1 );
 
-          query       += "+vocab_gov_types:(" + gob + ")";
+          if ( gob == "Autonomos" ) {
+            query   += "+organization:inegi";
+          } else {
+            query   += "+vocab_gov_types:(" + gob + ")";
+          }
           $scope.gov  = gob;
         };
 
