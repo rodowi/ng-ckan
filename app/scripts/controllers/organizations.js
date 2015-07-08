@@ -31,8 +31,14 @@ angular.module( 'ngCkanApp' )
           for ( var i = 0; i < $scope.organizations.length; i++ ) {
             $scope.organizations[i].hide  = false;
             switch ( gob ) {
+              case 'autonomos' :
+                if ( $scope.organizations[i].name != 'inegi' && $scope.organizations[i].name != 'ift' ) {
+                  displayed--;
+                  $scope.organizations[i].hide  = true;
+                }
+                break;
               case 'federal' :
-                if ( /estado-de.*/.test( $scope.organizations[i].name ) || /ayuntamiento-de.*/.test( $scope.organizations[i].name ) ) {
+                if ( $scope.organizations[i].name == 'inegi' || $scope.organizations[i].name == 'ift' || /estado-de.*/.test( $scope.organizations[i].name ) || /ayuntamiento-de.*/.test( $scope.organizations[i].name ) ) {
                   displayed--;
                   $scope.organizations[i].hide  = true;
                 }

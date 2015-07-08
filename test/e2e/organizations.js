@@ -34,13 +34,14 @@ describe( 'organizations', function() {
     expect( element( by.css( '[ng-show="gov_federal"]' ) ).all( by.tagName( 'a' ) ).first().getText() ).toMatch( /Federal *\d*/ );
     expect( element( by.css( '[ng-show="gov_state"]' ) ).all( by.tagName( 'a' ) ).first().getText() ).toMatch( /Estatal *\d*/ );
     expect( element( by.css( '[ng-show="gov_municipal"]' ) ).all( by.tagName( 'a' ) ).first().getText() ).toMatch( /Municipal *\d*/ );
+    expect( element( by.css( '[ng-show="gov_autonomous"]' ) ).all( by.tagName( 'a' ) ).first().getText() ).toMatch( /Organismos Autónomos *\d*/ );
   });
 
   it( 'should apply a government level filter in the URL and remove two of the three filter elements in the menu', function() {
     element( by.css( '[ng-show="gov_federal"]' ) ).all( by.tagName( 'a' ) ).first().click().then( function () {
       expect( browser.getCurrentUrl() ).toBe( browser.baseUrl + '#/instituciones?gob=federal' );
 
-      expect( element( by.css( '.page-filters' ) ).all( by.css( '.ng-hide' ) ).count() ).toBe( 2 );
+      expect( element( by.css( '.page-filters' ) ).all( by.css( '.ng-hide' ) ).count() ).toBe( 3 );
     });
   });
 
@@ -49,7 +50,7 @@ describe( 'organizations', function() {
     organizationList  = element.all( by.repeater( 'organization in organizations' ) );
 
     expect( browser.getCurrentUrl() ).toBe( browser.baseUrl + '#/instituciones?gob=federal' );
-    expect( element( by.css( '.page-filters' ) ).all( by.css( '.ng-hide' ) ).count() ).toBe( 2 );
+    expect( element( by.css( '.page-filters' ) ).all( by.css( '.ng-hide' ) ).count() ).toBe( 3 );
   });
 
   it( 'should remove the previously applied government level filtering', function() {
@@ -62,7 +63,7 @@ describe( 'organizations', function() {
     element( by.css( '[ng-show="gov_state"]' ) ).all( by.tagName( 'a' ) ).first().click().then( function () {
       expect( browser.getCurrentUrl() ).toBe( browser.baseUrl + '#/instituciones?gob=estatal' );
 
-      expect( element( by.css( '.page-filters' ) ).all( by.css( '.ng-hide' ) ).count() ).toBe( 2 );
+      expect( element( by.css( '.page-filters' ) ).all( by.css( '.ng-hide' ) ).count() ).toBe( 3 );
     });
   });
 
@@ -76,7 +77,21 @@ describe( 'organizations', function() {
     element( by.css( '[ng-show="gov_municipal"]' ) ).all( by.tagName( 'a' ) ).first().click().then( function () {
       expect( browser.getCurrentUrl() ).toBe( browser.baseUrl + '#/instituciones?gob=municipal' );
 
-      expect( element( by.css( '.page-filters' ) ).all( by.css( '.ng-hide' ) ).count() ).toBe( 2 );
+      expect( element( by.css( '.page-filters' ) ).all( by.css( '.ng-hide' ) ).count() ).toBe( 3 );
+    });
+  });
+
+  it( 'should remove the previously applied government level filtering', function() {
+    element( by.css( '[ng-click="clearGov()"]' ) ).click().then( function () {
+      expect( browser.getCurrentUrl() ).toBe( browser.baseUrl + '#/instituciones' );
+    });
+  });
+
+  it( 'should apply a government level filter in the URL and remove two of the three filter elements in the menu', function() {
+    element( by.css( '[ng-show="gov_autonomous"]' ) ).all( by.tagName( 'a' ) ).first().click().then( function () {
+      expect( browser.getCurrentUrl() ).toBe( browser.baseUrl + '#/instituciones?gob=autonomos' );
+
+      expect( element( by.css( '.page-filters' ) ).all( by.css( '.ng-hide' ) ).count() ).toBe( 3 );
     });
   });
 

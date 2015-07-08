@@ -38,7 +38,8 @@
             <div class="organization-item" ng-repeat="group in groups | filter:search">
               <div class="inner">
                 <a href="#/grupos/{{group.name}}">
-                  <img src="{{group.image_display_url}}" alt="Logo de {{group.display_name}}" />
+                  <img src="images/logo_datos.png" alt="Logo de {{group.display_name}}" />
+                  <span>{{ group.display_name }}</span>
                 </a>
               </div>
             </div>

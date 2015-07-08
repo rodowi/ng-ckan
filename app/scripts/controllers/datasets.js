@@ -17,6 +17,7 @@ angular.module( 'ngCkanApp' )
           ckanService.listDatasets( ( ( page - 1 ) * $scope.limit ), query, $scope.order ).then( function ( result ) {
             $scope.datasets     = result.datasets;
             $scope.resultsCount = result.resultsCount;
+            $scope.totalItems   = result.resultsCount - $scope.limit;
             $scope.page         = page;
             $scope.searching    = false;
           });
@@ -24,7 +25,11 @@ angular.module( 'ngCkanApp' )
         setGov      = function ( filter ) {
           var gob   = filter.charAt( 0 ).toUpperCase() + filter.slice( 1 );
 
-          query       += "+vocab_gov_types:(" + gob + ")";
+          if ( gob == "Autonomos" ) {
+            query   += "+organization:(inegi OR ift)";
+          } else {
+            query   += "+vocab_gov_types:(" + gob + ")";
+          }
           $scope.gov  = gob;
         };
 
