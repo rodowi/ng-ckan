@@ -50,7 +50,7 @@
             <div class="organization-item" ng-repeat="organization in organizations | filter:search" ng-show="!searching">
               <div class="inner" ng-show="!organization.hide">
                 <a href="#/instituciones/{{organization.name}}">
-                  <img src="{{organization.image_display_url}}" alt="Logo de {{organization.display_name}}" />
+                  <img ng-src="{{organization.image_display_url}}" alt="Logo de {{organization.display_name}}" />
                   <span>{{ organization.display_name }}</span>
                 </a>
               </div>
