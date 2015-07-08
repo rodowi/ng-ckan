@@ -63,7 +63,7 @@ angular.module('ngCkanApp')
               }
 
               if ( loadAutonomous ) {
-                ckanService.countDatasets( query + '+organization:inegi' ).then( function ( result ) {
+                ckanService.countDatasets( query + '+organization:(inegi OR ift)' ).then( function ( result ) {
                   scope.gov_autonomous  = result.count;
                 });
               }
@@ -93,7 +93,7 @@ angular.module('ngCkanApp')
                     organizations = ( data ) ? angular.fromJson( data ) : [];
 
                 for ( var i = 0; i < organizations.length; i++ ) {
-                  if ( organizations[i].name == "inegi" ) {
+                  if ( organizations[i].name == "inegi" || organizations[i].name == "ift" ) {
                     autonomous++;
                   } else {
                     if ( /estado-de.*/.test( organizations[i].name ) ) {

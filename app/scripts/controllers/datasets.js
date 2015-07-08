@@ -26,7 +26,7 @@ angular.module( 'ngCkanApp' )
           var gob   = filter.charAt( 0 ).toUpperCase() + filter.slice( 1 );
 
           if ( gob == "Autonomos" ) {
-            query   += "+organization:inegi";
+            query   += "+organization:(inegi OR ift)";
           } else {
             query   += "+vocab_gov_types:(" + gob + ")";
           }
