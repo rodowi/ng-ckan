@@ -23,6 +23,7 @@ module.exports = function(config) {
       'bower_components/angular/angular.js',
       'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js',
       'bower_components/angular-cookies/angular-cookies.js',
+      'bower_components/angular-i18n/angular-locale_es-mx.js',
       'bower_components/angular-resource/angular-resource.js',
       'bower_components/angular-route/angular-route.js',
       'bower_components/angular-ui-bootstrap-pagination/pagination.js',
