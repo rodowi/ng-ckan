@@ -10,7 +10,8 @@
 angular.module('ngCkanApp')
   .controller('ResourcesCtrl', function ($scope, $routeParams, ckanService) {
 
-    ckanService.showDataset($routeParams.datasetId)
+    var id  = $routeParams.datasetId.replace(/_/g, '-');
+    ckanService.showDataset(id)
       .then(function(result) {
         $scope.dataset = result;
       });
