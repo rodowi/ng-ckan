@@ -22,7 +22,8 @@
           </div>
           <h5 class="dataset-resources-title">Datos y recursos</h5>
           <div class="dataset-resources-list">
-            <a class="resource-item" ng-href="{{resource.url}}" ng-repeat="resource in dataset.resources">
+            <p ng-show="searching">Buscando...</p>
+            <a class="resource-item" ng-href="{{resource.url}}" ng-repeat="resource in dataset.resources" ng-show="!searching">
               <div class="resourse-format">
                 <div class="dataset-format {{resource.format}}">
                   {{resource.format}}
