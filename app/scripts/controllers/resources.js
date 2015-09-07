@@ -9,15 +9,18 @@
  */
 angular.module('ngCkanApp')
   .controller('ResourcesCtrl', function ($scope, $routeParams, ckanService) {
-    var id          = $routeParams.datasetId.replace(/_/g, '-'),
+    var id          = ( typeof $routeParams.datasetId == 'string' ) ? $routeParams.datasetId.replace(/_/g, '-') : $routeParams.datasetId,
         retrying    = false,
         retrieve    = function ( id ) {
+            $scope.searching      = true;
             ckanService.showDataset( id )
               .then(function(result) {
-                $scope.dataset = result;
+                $scope.dataset    = result;
+                $scope.searching  = false;
               }, function ( error ) {
+                $scope.searching  = false;
                 if ( !retrying ) {
-                  retrying    = true;
+                  retrying      = true;
                   id            = id.replace(/--/g, '-');
                   retrieve( id );
                 }
@@ -26,4 +29,3 @@ angular.module('ngCkanApp')
 
     retrieve( id );
   });
-

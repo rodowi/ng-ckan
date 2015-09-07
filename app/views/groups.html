@@ -35,7 +35,8 @@
             </div>
           </div>
           <div class="organizations-list">
-            <div class="organization-item" ng-repeat="group in groups | filter:search">
+            <p ng-show="searching">Buscando...</p>
+            <div class="organization-item" ng-repeat="group in groups | filter:search" ng-show="!searching">
               <div class="inner">
                 <a href="#/grupos/{{group.name}}">
                   <img src="images/logo_datos.png" alt="Logo de {{group.display_name}}" />

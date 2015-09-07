@@ -9,10 +9,12 @@
  */
 angular.module('ngCkanApp')
   .controller('GroupCtrl', function ($scope, $routeParams, ckanService) {
+    $scope.searching    = true;
 
     ckanService.showGroup($routeParams.groupId)
       .then(function(result) {
-        $scope.group = result;
+        $scope.group        = result;
+        $scope.searching    = false;
       });
 
   });
