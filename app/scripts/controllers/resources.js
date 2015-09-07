@@ -9,7 +9,7 @@
  */
 angular.module('ngCkanApp')
   .controller('ResourcesCtrl', function ($scope, $routeParams, ckanService) {
-    var id          = $routeParams.datasetId.replace(/_/g, '-'),
+    var id          = ( typeof $routeParams.datasetId == 'string' ) ? $routeParams.datasetId.replace(/_/g, '-') : $routeParams.datasetId,
         retrying    = false,
         retrieve    = function ( id ) {
             $scope.searching      = true;
@@ -29,4 +29,3 @@ angular.module('ngCkanApp')
 
     retrieve( id );
   });
-
