@@ -41,7 +41,8 @@
               </div>
             </div>
             <div class="datasets-list">
-              <a href="#/conjuntos/{{dataset.name}}" class="dataset-item" ng-repeat="dataset in organization.packages">
+              <p ng-show="searching">Buscando...</p>
+              <a href="#/conjuntos/{{dataset.name}}" class="dataset-item" ng-repeat="dataset in organization.packages" ng-show="!searching">
                 <div class="dataset-trending-flag">
                   <img ng-src="http://datos.gob.mx/assets/svg/icon-trending-green.svg" alt="">
                 </div>
