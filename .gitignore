@@ -4,6 +4,7 @@ dist
 .tmp
 .sass-cache
 bower_components
+.grunt
 
 # Coverall specifi files
 instrumented
