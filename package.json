@@ -20,6 +20,7 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-coveralls": "^1.0.0",
     "grunt-filerev": "^2.1.2",
+    "grunt-gh-pages": "^0.10.0",
     "grunt-google-cdn": "^0.4.3",
     "grunt-istanbul": "^0.2.5",
     "grunt-karma": "^0.10.1",
