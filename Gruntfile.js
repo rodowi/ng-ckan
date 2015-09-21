@@ -32,8 +32,7 @@ module.exports  = function ( grunt ) {
             options : {
                 port            : 9000,
                 hostname        : 'localhost',
-                livereload      : '<%= config.livereload %>',
-                keepalive       : true
+                livereload      : '<%= config.livereload %>'
             },
             dev     : {
                 options         : {
