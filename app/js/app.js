@@ -1,14 +1,17 @@
 'use strict';
 
-define( function () {
+define( function ( require ) {
 
-    var app     = angular.module( 'ngCkan', [
+    var DatasetsModule  = require( 'datasets/DatasetsModule' );
+
+    var app             = angular.module( 'ngCkan', [
             'ngResource',
-            'ui.router'
+            'ui.router',
+            'DatasetsModule'
         ]);
 
     app.config([ '$urlRouterProvider', function ( $urlRouterProvider ) {
-        $urlRouterProvider.otherwise( '/' );
+        $urlRouterProvider.otherwise( '/conjuntos' );
     }]);
 
     app.run([ '$rootScope', '$state', function ( $rootScope, $state ) {
