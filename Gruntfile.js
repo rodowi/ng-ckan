@@ -312,6 +312,15 @@ module.exports  = function ( grunt ) {
                     spawn       : false,
                     livereload  : '<%= config.livereload %>'
                 }
+            },
+            livereload  : {
+                options : {
+                    livereload  : '<%= config.livereload %>'
+                },
+                files   : [
+                    '<%= config.app %>/{,*/}*.html',
+                    '<%= config.app %>/partials/{,*/}*.html'
+                ]
             }
         },
         wiredep                 : {

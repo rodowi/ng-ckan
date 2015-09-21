@@ -1,0 +1,45 @@
+@import url( '../../bower_components/bootstrap/less/bootstrap.less' );
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic);
+
+/*********************************
+    GENERAL STYLES
+*********************************/
+html, body                              { margin: 0; font-size: 16px; font-weight: 300; line-height: 1.6em; font-family: "Open Sans"; color: #595959; }
+.btn                                    { padding: 10px; border: none; border-radius: 0; }
+.btn-default                            { background-color: #9b9b9b; color: #fff; font-size: 12px; font-weight: 600; text-transform: uppercase; }
+
+/*********************************
+    FONT STYLES
+*********************************/
+a, a:active, a:hover, a:focus           { outline: 0; border: none; text-decoration: none; }
+a:hover                                 { text-decoration: none; }
+
+/*********************************
+    TABS STYLES
+*********************************/
+.nav-tabs                               { border: none; }
+.nav-tabs > li                          { margin-bottom: 0; border-bottom: 5px solid #474747; }
+.nav-tabs > li.active,
+.nav-tabs > li:hover                    { border-bottom-color: #00d2a9; }
+.nav-tabs > li > a                      { font-size: 14px; font-weight: 700; color: #595959; border: none; border-radius: 0; }
+.nav-tabs > li:hover > a,
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus         { color: #00d2a9; border: none; background-color: transparent; }
+
+
+/*********************************
+    HEADER STYLES
+*********************************/
+header                                  { padding-top: 20px; }
+
+/*********************************
+    SUBSCRIBE SECTION STYLES
+*********************************/
+#subscribe                              { padding: 30px 0; background-color: #eee; }
+#subscribe p                            { margin-bottom: 0; line-height: 37.15px; }
+#subscribe a                            { color: #595959; font-weight: 700; }
+#subscribe .form                        { overflow: hidden; }
+#subscribe .form > .form-group          { width: 80%; margin-bottom: 0; float: left; }
+#subscribe .form > .form-group > input  { height: 37.15px; font-size: 14px; font-weight: 300; color: #ababab; border-radius: 0; border: none; }
+#subscribe .form > button               { float: left; width: 20%; }
