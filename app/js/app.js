@@ -6,6 +6,8 @@ define( function ( require ) {
 
     var app             = angular.module( 'ngCkan', [
             'ngResource',
+            'ui.bootstrap.pagination',
+            'ui.bootstrap.tpls',
             'ui.router',
             'DatasetsModule'
         ]);

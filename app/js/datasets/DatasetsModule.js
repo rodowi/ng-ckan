@@ -10,7 +10,7 @@ define( function ( require ) {
 
     DatasetsModule.config( [ '$stateProvider', DatasetsRouter ] );
 
-    DatasetsModule.controller( 'DatasetsResultsCtrl', [ '$scope', DatasetsResultsCtrl ] );
+    DatasetsModule.controller( 'DatasetsResultsCtrl', [ '$scope', '$stateParams', 'DatasetsService', DatasetsResultsCtrl ] );
 
     DatasetsModule.controller( 'DatasetsSearchCtrl', [ '$scope', '$location', 'DatasetsService', DatasetsSearchCtrl ] );
 

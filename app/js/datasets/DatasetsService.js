@@ -23,10 +23,12 @@ define( function () {
                 return this._total;
             },
 
-            query       : function ( q ) {
+            query       : function ( q, skip ) {
                 return this._resource.query({
                         action  : 'package_search',
-                        q       : q
+                        q       : q,
+                        rows    : 10,
+                        start   : skip
                     },
                     function ( data ) {
                         while( !data.$resolved );

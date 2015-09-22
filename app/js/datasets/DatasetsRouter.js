@@ -13,7 +13,7 @@ define( function () {
                 }
             })
             .state( 'datasets.results', {
-                url             : '/conjuntos',
+                url             : '/conjuntos?page',
                 views           : {
                     'datasets-sidebar'  : {
                         templateUrl     : 'partials/datasets/filters.html'

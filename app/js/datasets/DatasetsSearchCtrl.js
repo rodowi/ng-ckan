@@ -4,6 +4,7 @@ define( function () {
     return function ( $scope, $location, Datasets ) {
         var query       = "",
             search      = $location.search(),
+            skip        = 0,
             setQuery    = function () {
                 if ( $scope.keyword ) {
                     var search  = $scope.keyword,
@@ -16,11 +17,14 @@ define( function () {
             },
             retrieve    = function () {
                 setQuery();
-                Datasets.query( query );
+                Datasets.query( query, skip );
             };
 
         if ( search.q ) {
             $scope.keyword  = decodeURIComponent( search.q );
+        }
+        if ( search.page ) {
+            skip        = ( search.page - 1 ) * 10;
         }
 
         $scope.clearSearch  = function () {
@@ -39,6 +43,18 @@ define( function () {
         };
         $scope.$on( 'DATASETS_RETRIEVED', function () {
             $scope.count    = Datasets.getTotal();
+        });
+        $scope.$on( 'PAGE_UPDATED', function ( e, page ) {
+            e.preventDefault();
+
+            if ( page > 1 ) {
+                $location.search( "page", page );
+            } else {
+                $location.search( "page", null );
+            }
+
+            skip        = ( page - 1 ) * 10;
+            retrieve();
         });
 
         retrieve();
