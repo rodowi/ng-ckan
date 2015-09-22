@@ -53,7 +53,7 @@ define( function () {
                 $location.search( 'page', null );
             }
 
-            skip        = page - 1 * 10;
+            skip        = ( page - 1 ) * 10;
             retrieve();
         });
 
