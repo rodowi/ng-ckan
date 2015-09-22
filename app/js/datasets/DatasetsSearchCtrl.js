@@ -2,6 +2,10 @@
 
 define( function () {
     return function ( $scope, Datasets ) {
-        $scope.datasets     = Datasets.query();
+        Datasets.query();
+
+        $scope.$on( 'DATASETS_RETRIEVED', function () {
+            $scope.count    = Datasets.getTotal();
+        });
     };
 });

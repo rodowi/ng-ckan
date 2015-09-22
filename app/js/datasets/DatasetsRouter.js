@@ -8,18 +8,18 @@ define( function () {
                 views       : {
                     'search-container'  : {
                         templateUrl     : 'partials/datasets/search.html',
+                        controller      : 'DatasetsSearchCtrl'
                     }
                 }
             })
-            .state( 'datasets.search', {
+            .state( 'datasets.results', {
                 url         : '/conjuntos',
                 views       : {
                     'datasets-sidebar'  : {
                         templateUrl     : 'partials/datasets/filters.html'
                     },
                     'datasets-content'  : {
-                        templateUrl     : 'partials/datasets/results.html',
-                        controller      : 'DatasetsSearchCtrl'
+                        templateUrl     : 'partials/datasets/results.html'
                     }
                 }
             });
