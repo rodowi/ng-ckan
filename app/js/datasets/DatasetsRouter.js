@@ -19,7 +19,8 @@ define( function () {
                         templateUrl     : 'partials/datasets/filters.html'
                     },
                     'datasets-content'  : {
-                        templateUrl     : 'partials/datasets/results.html'
+                        templateUrl     : 'partials/datasets/results.html',
+                        controller      : 'DatasetsResultsCtrl'
                     }
                 }
             });

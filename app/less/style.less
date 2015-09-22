@@ -4,69 +4,83 @@
 /*********************************
     GENERAL STYLES
 *********************************/
-html, body                              { margin: 0; font-size: 14px; font-weight: 300; line-height: 1.6em; font-family: "Open Sans"; color: #595959; }
-.btn                                    { padding: 10px; border: none; border-radius: 0; }
-.btn-default                            { background-color: #9b9b9b; color: #fff; font-size: 12px; font-weight: 600; text-transform: uppercase; }
+html, body                                  { margin: 0; font-size: 14px; font-weight: 300; line-height: 1.6em; font-family: "Open Sans"; color: #595959; }
+.btn                                        { padding: 10px; border: none; border-radius: 0; }
+.btn-default                                { background-color: #9b9b9b; color: #fff; font-size: 12px; font-weight: 600; text-transform: uppercase; }
 
 /*********************************
     FONT STYLES
 *********************************/
-h1                                      { font-size: 24px; font-weight: 700; color: #595959; }
-a, a:active, a:hover, a:focus           { outline: 0; border: none; text-decoration: none; }
-a:hover                                 { text-decoration: none; }
+h1                                          { font-size: 24px; font-weight: 700; color: #595959; }
+a, a:active, a:hover, a:focus               { outline: 0; border: none; text-decoration: none; }
+a:hover                                     { text-decoration: none; }
+.label                                      { font-size: 12px; font-weight: 700; color: #fff; text-transform: uppercase; border-radius: 0; }
+.label[data-format="csv"]                   { background-color: #ffd100; }
+.label[data-format="klm"]                   { background-color: #474747; }
 
 /*********************************
     FORM STYLES
 *********************************/
-.form-control                           { border-radius: 0; border: none; color: #a1a1a1; }
+.form-control                               { border-radius: 0; border: none; color: #a1a1a1; }
 
 /*********************************
     TABS STYLES
 *********************************/
-.nav-tabs                               { border: none; }
-.nav-tabs > li                          { margin-bottom: 0; border-bottom: 5px solid #474747; }
+.nav-tabs                                   { border: none; }
+.nav-tabs > li                              { margin-bottom: 0; border-bottom: 5px solid #474747; }
 .nav-tabs > li.active,
-.nav-tabs > li:hover                    { border-bottom-color: #00d2a9; }
-.nav-tabs > li > a                      { font-size: 14px; font-weight: 700; color: #595959; border: none; border-radius: 0; }
+.nav-tabs > li:hover                        { border-bottom-color: #00d2a9; }
+.nav-tabs > li > a                          { font-size: 14px; font-weight: 700; color: #595959; border: none; border-radius: 0; }
 .nav-tabs > li:hover > a,
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,
-.nav-tabs > li.active > a:focus         { color: #00d2a9; border: none; background-color: transparent; }
+.nav-tabs > li.active > a:focus             { color: #00d2a9; border: none; background-color: transparent; }
 
+/*********************************
+    TABLES STYLES
+*********************************/
+table                                       { width: 100%; }
+table > thead > tr > th                     { font-size: 11px; font-weight: 700; color: #595959; }
+table > thead > tr > th > .glyphicon        { color: #d8d8d8; margin-right: 5px; position: relative; top: 2px; }
+table.data                                  { margin-top: -10px; border-spacing: 0 20px; border-collapse: separate; }
+table.data > tbody > tr > td                { padding: 10px 15px; background-color: #eee; font-size: 11px; font-weight: 300; color: #595959; }
+table.data > tbody > tr > td.ic-dataset     { background-color: #d7d7d7; text-align: center; vertical-align: bottom; }
+table.data > tbody > tr > td.ic-dataset img { width: 20px; }
 
 /*********************************
     HEADER STYLES
 *********************************/
-header                                  { padding-top: 20px; }
+header                                      { padding-top: 20px; }
 
 /*********************************
     SUBSCRIBE SECTION STYLES
 *********************************/
-#subscribe                              { padding: 30px 0; background-color: #eee; }
-#subscribe p                            { margin-bottom: 0; line-height: 37.15px; }
-#subscribe a                            { color: #595959; font-weight: 700; }
-#subscribe .form                        { overflow: hidden; }
-#subscribe .form > .form-group          { width: 80%; margin-bottom: 0; float: left; }
-#subscribe .form > .form-group > input  { height: 37.15px; font-size: 14px; font-weight: 300; color: #ababab; border-radius: 0; border: none; }
-#subscribe .form > button               { float: left; width: 20%; }
+#subscribe                                  { padding: 30px 0; background-color: #eee; }
+#subscribe p                                { margin-bottom: 0; line-height: 37.15px; }
+#subscribe a                                { color: #595959; font-weight: 700; }
+#subscribe .form                            { overflow: hidden; }
+#subscribe .form > .form-group              { width: 80%; margin-bottom: 0; float: left; }
+#subscribe .form > .form-group > input      { height: 37.15px; font-size: 14px; font-weight: 300; color: #ababab; border-radius: 0; border: none; }
+#subscribe .form > button                   { float: left; width: 20%; }
 
 /*********************************
     SEARCH SECTION STYLES
 *********************************/
-#search-header                          { padding-top: 30px; padding-bottom: 30px; background-color: #eee; }
-#search-header h1                       { margin-top: 0; margin-bottom: 20px; }
-#search-header p                        { margin-bottom: 0; }
-#datasets-sidebar                       { padding-top: 20px; padding-bottom: 20px; background-color: #474747; }
+#search-header                              { padding-top: 30px; padding-bottom: 30px; background-color: #eee; }
+#search-header h1                           { margin-top: 0; margin-bottom: 20px; }
+#search-header p                            { margin-bottom: 0; }
+#datasets-content                           { padding: 30px; }
+#datasets-sidebar                           { padding-top: 20px; padding-bottom: 20px; background-color: #474747; }
 #datasets-sidebar > h3,
-#datasets-sidebar > h4                  { margin-top: 0; margin-bottom: 10px; font-size: 13px; text-transform: uppercase; color: #7c7c7c; }
-#datasets-sidebar > h3                  { font-weight: 700; }
-#datasets-sidebar > h4                  { margin-bottom: 30px; font-weight: 400; }
-#datasets-sidebar ul                    { margin-bottom: 30px; list-style: none; padding-left: 0; }
-#datasets-sidebar ul > li               { line-height: 30px; height: 30px; }
-#datasets-sidebar ul > li.icon-item     { margin: 15px 0; padding-left: 50px; background-size: contain; background-repeat: no-repeat; }
-#datasets-sidebar ul > li > a           { font-size: 13px; font-weight: 400; color: #7c7c7c; }
+#datasets-sidebar > h4                      { margin-top: 0; margin-bottom: 10px; font-size: 13px; text-transform: uppercase; color: #7c7c7c; }
+#datasets-sidebar > h3                      { font-weight: 700; }
+#datasets-sidebar > h4                      { margin-bottom: 30px; font-weight: 400; }
+#datasets-sidebar ul                        { margin-bottom: 30px; list-style: none; padding-left: 0; }
+#datasets-sidebar ul > li                   { line-height: 30px; height: 30px; }
+#datasets-sidebar ul > li.icon-item         { margin: 15px 0; padding-left: 50px; background-size: contain; background-repeat: no-repeat; }
+#datasets-sidebar ul > li > a               { font-size: 13px; font-weight: 400; color: #7c7c7c; }
 #datasets-sidebar ul > li.active > a,
-#datasets-sidebar ul > li:hover > a     { color: #00d2a9; }
+#datasets-sidebar ul > li:hover > a         { color: #00d2a9; }
 #datasets-sidebar ul > li.filter-all            { background-image: url(../img/ic-all.png); }
 #datasets-sidebar ul > li.filter-health         { background-image: url(../img/ic-health.png); }
 #datasets-sidebar ul > li.filter-geography      { background-image: url(../img/ic-geography.png); }
