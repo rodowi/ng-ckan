@@ -28,12 +28,12 @@ describe( 'App', function () {
     });
 
     it ( 'should filter the search results', function () {
-        element( by.model( 'keyword' ) ).sendKeys( 'Lluvia severa' );
+        element( by.css( '#search-keyword' ) ).sendKeys( 'presupuesto' );
         browser.actions().sendKeys( protractor.Key.ENTER ).perform();
     });
 
     it ( 'should clear the search by sending an empty string', function () {
-        element( by.model( 'keyword' ) ).clear();
+        element( by.css( '#search-keyword' ) ).clear();
         browser.actions().sendKeys( protractor.Key.ENTER ).perform();
 
         expect( browser.getLocationAbsUrl() ).toMatch( '/conjuntos' );
@@ -42,7 +42,7 @@ describe( 'App', function () {
     it ( 'should preserve the search keyword when refreshing the browser', function () {
         browser.get( '/#/conjuntos?q=presupuesto' );
 
-        element( by.model( 'keyword' ) ).getAttribute( 'value' ).then( function ( value ) {
+        element( by.css( '#search-keyword' ) ).getAttribute( 'value' ).then( function ( value ) {
             expect( value ).toBe( 'presupuesto' );
         });
     });
