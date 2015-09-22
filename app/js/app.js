@@ -2,7 +2,7 @@
 
 define( function ( require ) {
 
-    var DatasetsModule  = require( 'datasets/DatasetsModule' );
+    require( 'datasets/DatasetsModule' );
 
     var app             = angular.module( 'ngCkan', [
             'ngResource',

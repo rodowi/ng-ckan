@@ -2,17 +2,17 @@
 
 define( function () {
     return function ( $scope, $location, Datasets ) {
-        var query       = "",
+        var query       = '',
             search      = $location.search(),
             skip        = 0,
             setQuery    = function () {
                 if ( $scope.keyword ) {
-                    var search  = $scope.keyword,
-                        exp     = search.split( " " ).join( "* OR " );
-                    search      = search.split( " " ).join( " OR " );
-                    query       += "title:(" + search + " OR " + exp + "*)";
+                    var q       = $scope.keyword,
+                        exp     = q.split( ' '  ).join( '* OR ' );
+                    q           = q.split( ' ' ).join( ' OR ' );
+                    query       += 'title:(' + q + ' OR ' + exp + '*)';
                 } else {
-                    query       = "";
+                    query       = '';
                 }
             },
             retrieve    = function () {
@@ -28,15 +28,15 @@ define( function () {
         }
 
         $scope.clearSearch  = function () {
-            $scope.keyword  = "";
-            $location.search( "q", null );
+            $scope.keyword  = '';
+            $location.search( 'q', null );
             retrieve();
         };
         $scope.search       = function () {
             if ( $scope.keyword ) {
-                $location.search( "q", encodeURIComponent( $scope.keyword ) );
+                $location.search( 'q', encodeURIComponent( $scope.keyword ) );
             } else {
-                $location.search( "q", null );
+                $location.search( 'q', null );
             }
 
             retrieve();
@@ -48,12 +48,12 @@ define( function () {
             e.preventDefault();
 
             if ( page > 1 ) {
-                $location.search( "page", page );
+                $location.search( 'page', page );
             } else {
-                $location.search( "page", null );
+                $location.search( 'page', null );
             }
 
-            skip        = ( page - 1 ) * 10;
+            skip        = page - 1 * 10;
             retrieve();
         });
 

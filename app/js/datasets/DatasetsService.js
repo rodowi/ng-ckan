@@ -32,7 +32,9 @@ define( function () {
                         start   : skip
                     },
                     function ( data ) {
-                        while( !data.$resolved );
+                        while( !data.$resolved ) {
+                            // Resolving
+                        }
 
                         $rootScope.$broadcast( 'DATASETS_RETRIEVED', data );
                     });
