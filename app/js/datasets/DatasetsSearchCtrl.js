@@ -23,7 +23,12 @@ define( function () {
             $scope.keyword  = decodeURIComponent( search.q );
         }
 
-        $scope.search   = function () {
+        $scope.clearSearch  = function () {
+            $scope.keyword  = "";
+            $location.search( "q", null );
+            retrieve();
+        };
+        $scope.search       = function () {
             if ( $scope.keyword ) {
                 $location.search( "q", encodeURIComponent( $scope.keyword ) );
             } else {

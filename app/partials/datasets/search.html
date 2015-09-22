@@ -5,9 +5,10 @@
             <p>{{ count }} resultados</p>
         </div>
         <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-            <form class="form" ng-submit="search()">
+            <form class="form search-form" ng-submit="search()">
                 <div class="form-group">
                     <input type="text" name="keyword" class="form-control" placeholder="Buscar" ng-model="keyword">
+                    <span class="glyphicon glyphicon-remove" ng-click="clearSearch()"></span>
                 </div>
             </form>
         </div>
