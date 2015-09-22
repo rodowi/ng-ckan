@@ -1,0 +1,35 @@
+<div id="search-header" class="container-fluid">
+    <div class="row">
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+            <h1>Datos</h1>
+            <p>{{ count }} resultados</p>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+            <form class="form search-form" ng-submit="search()">
+                <div class="form-group">
+                    <input type="text" name="keyword" id="search-keyword" class="form-control" placeholder="Buscar" ng-model="keyword">
+                    <span class="glyphicon glyphicon-remove" ng-click="clearSearch()"></span>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+            <form class="form">
+                <div class="form-group">
+                    <select name="sort" class="form-control">
+                        <option value="">Ordenar por Relevancia</option>
+                        <option value="title_string+asc">Ordenar por Nombre Ascendente</option>
+                        <option value="title_string+desc">Ordenar por Nombre Descendente</option>
+                        <option value="metadata_modified+desc">Ordenar por Última Modificación</option>
+                        <option value="views_recent+desc">Ordenar por Popularidad</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div id="datasets-container" class="row">
+        <div id="datasets-sidebar" class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ui-view="datasets-sidebar"></div>
+        <div id="datasets-content" class="col-lg-10 col-md-10 col-sm-10 col-xs-10" ui-view="datasets-content"></div>
+    </div>
+</div>
