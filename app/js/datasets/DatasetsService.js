@@ -23,9 +23,10 @@ define( function () {
                 return this._total;
             },
 
-            query       : function () {
+            query       : function ( q ) {
                 return this._resource.query({
-                        action  : 'package_search'
+                        action  : 'package_search',
+                        q       : q
                     },
                     function ( data ) {
                         while( !data.$resolved );

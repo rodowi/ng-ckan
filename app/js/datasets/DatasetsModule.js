@@ -12,7 +12,7 @@ define( function ( require ) {
 
     DatasetsModule.controller( 'DatasetsResultsCtrl', [ '$scope', DatasetsResultsCtrl ] );
 
-    DatasetsModule.controller( 'DatasetsSearchCtrl', [ '$scope', 'DatasetsService', DatasetsSearchCtrl ] );
+    DatasetsModule.controller( 'DatasetsSearchCtrl', [ '$scope', '$location', 'DatasetsService', DatasetsSearchCtrl ] );
 
     DatasetsModule.factory( 'DatasetsService', [ '$rootScope', '$resource', DatasetsService ] );
 });

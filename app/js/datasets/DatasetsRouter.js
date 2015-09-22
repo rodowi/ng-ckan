@@ -13,8 +13,8 @@ define( function () {
                 }
             })
             .state( 'datasets.results', {
-                url         : '/conjuntos',
-                views       : {
+                url             : '/conjuntos',
+                views           : {
                     'datasets-sidebar'  : {
                         templateUrl     : 'partials/datasets/filters.html'
                     },
@@ -22,7 +22,8 @@ define( function () {
                         templateUrl     : 'partials/datasets/results.html',
                         controller      : 'DatasetsResultsCtrl'
                     }
-                }
+                },
+                reloadOnSearch  : false
             });
     };
 });
