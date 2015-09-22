@@ -24,6 +24,7 @@ define( function () {
             },
 
             query       : function ( q, skip ) {
+                $rootScope.$broadcast( 'QUERYING_DATASETS' );
                 return this._resource.query({
                         action  : 'package_search',
                         q       : q,
