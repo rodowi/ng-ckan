@@ -7,7 +7,7 @@ define( function () {
                 abstract    : true,
                 views       : {
                     'search-container'  : {
-                        templateUrl     : 'partials/datasets/search.html'
+                        templateUrl     : 'partials/datasets/search.html',
                     }
                 }
             })
@@ -16,6 +16,10 @@ define( function () {
                 views       : {
                     'datasets-sidebar'  : {
                         templateUrl     : 'partials/datasets/filters.html'
+                    },
+                    'datasets-content'  : {
+                        templateUrl     : 'partials/datasets/results.html',
+                        controller      : 'DatasetsSearchCtrl'
                     }
                 }
             });
