@@ -3,13 +3,15 @@
 define( function ( require ) {
 
     require( 'datasets/DatasetsModule' );
+    require( 'organizations/OrganizationsModule' );
 
     var app             = angular.module( 'ngCkan', [
             'ngResource',
             'ui.bootstrap.pagination',
             'ui.bootstrap.tpls',
             'ui.router',
-            'DatasetsModule'
+            'DatasetsModule',
+            'OrganizationsModule'
         ]);
 
     app.config([ '$urlRouterProvider', function ( $urlRouterProvider ) {
