@@ -2,6 +2,8 @@
 
 define( function ( require ) {
 
+    require( 'events' );
+    require( 'common/CommonModule' );
     require( 'datasets/DatasetsModule' );
     require( 'organizations/OrganizationsModule' );
 
@@ -10,6 +12,8 @@ define( function ( require ) {
             'ui.bootstrap.pagination',
             'ui.bootstrap.tpls',
             'ui.router',
+            'App.Events',
+            'CommonModule',
             'DatasetsModule',
             'OrganizationsModule'
         ]);
