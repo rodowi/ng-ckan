@@ -4,6 +4,7 @@ define( function () {
     return function ( $rootScope, $resource, events ) {
         function BaseService( model ) {
             this._model     = '';
+            this._pageSize  = 20;
             this._total     = 0;
             this._resource  = null;
 
@@ -33,6 +34,10 @@ define( function () {
                 return this;
             },
 
+            getPageSize : function () {
+                return this._pageSize;
+            },
+
             getTotal    : function () {
                 return this._total;
             },
@@ -40,6 +45,7 @@ define( function () {
             query       : function ( q ) {
                 var that    = this;
 
+                $rootScope.$broadcast( events[ that._model.toUpperCase() + '_QUERYING' ] );
                 return this._resource.query( q,
                     function ( data ) {
                     while ( !data.$resolved ) {
