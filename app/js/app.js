@@ -24,6 +24,21 @@ define( function ( require ) {
 
     app.run([ '$rootScope', '$state', function ( $rootScope, $state ) {
         $rootScope.$state   = $state;
+
+        $rootScope.$on( '$stateChangeSuccess', function ( e, toState ) {
+            $( '.nav-tabs li' ).removeClass( 'active' );
+            switch ( toState.name ) {
+                case 'datasets.results' :
+                    $( '#item-datasets' ).addClass( 'active' );
+                    break;
+                case 'groups.results' :
+                    $( '#item-groups' ).addClass( 'active' );
+                    break;
+                case 'organizations.results' :
+                    $( '#item-organizations' ).addClass( 'active' );
+                    break;
+            }
+        });
     }]);
 
     return app;
