@@ -1,7 +1,7 @@
 'use strict';
 
 define( function ( require ) {
-    var OrganizationsResultsCtrl    = require( 'organizations/OrganizationsResultsCtrl' );
+    var ResultsCtrl                 = require( 'common/ResultsCtrl' );
     var OrganizationsRouter         = require( 'organizations/OrganizationsRouter' );
     var OrganizationsSearchCtrl     = require( 'organizations/OrganizationsSearchCtrl' );
     var OrganizationsService        = require( 'organizations/OrganizationsService' );
@@ -10,7 +10,7 @@ define( function ( require ) {
 
     OrganizationsModule.config( [ '$stateProvider', OrganizationsRouter ] );
 
-    OrganizationsModule.controller( 'OrganizationsResultsCtrl', [ '$scope', '$stateParams', 'events', 'OrganizationsService', OrganizationsResultsCtrl ] );
+    OrganizationsModule.controller( 'OrganizationsResultsCtrl', [ '$scope', '$stateParams', 'OrganizationsService', ResultsCtrl ] );
 
     OrganizationsModule.controller( 'OrganizationsSearchCtrl', [ '$scope', 'events', 'OrganizationsService', OrganizationsSearchCtrl ] );
 

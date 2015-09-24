@@ -1,6 +1,6 @@
 <p ng-show="searching">Buscando...</p>
 <div class="row stacked">
-    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12" ng-repeat="organization in organizations">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12" ng-repeat="organization in results">
         <div class="organization-item">
             <img ng-src="https://raw.githubusercontent.com/mxabierto/assets/master/img/logos/{{ organization.slug }}.png" alt="{{ organization.title }}">
         </div>

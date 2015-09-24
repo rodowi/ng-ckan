@@ -41,7 +41,7 @@ define( function () {
 
             retrieve();
         };
-        $scope.$on( 'DATASETS_RETRIEVED', function () {
+        $scope.$on( Datasets.getEvent( 'QUERY' ), function () {
             $scope.count    = Datasets.getTotal();
         });
         $scope.$on( 'PAGE_UPDATED', function ( e, page ) {

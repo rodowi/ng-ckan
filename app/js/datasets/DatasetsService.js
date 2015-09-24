@@ -1,7 +1,7 @@
 'use strict';
 
 define( function () {
-    return function ( $rootScope, $resource ) {
+    return function ( $rootScope, $resource, events ) {
         var Service = {
             _total      : 0,
 
@@ -19,12 +19,30 @@ define( function () {
                 }
             }),
 
+            getEvent    : function ( event ) {
+                switch ( event ) {
+                    case 'ERROR' :
+                        return events.DATASETS_ERROR;
+                        break;
+                    case 'QUERYING' :
+                        return events.DATASETS_QUERYING;
+                        break;
+                    case 'QUERY' :
+                        return events.DATASETS_QUERY;
+                        break;
+                }
+            },
+
+            getPageSize : function () {
+                return 10;
+            },
+
             getTotal    : function () {
                 return this._total;
             },
 
             query       : function ( q, skip ) {
-                $rootScope.$broadcast( 'QUERYING_DATASETS' );
+                $rootScope.$broadcast( events.DATASETS_QUERYING );
                 return this._resource.query({
                         action  : 'package_search',
                         q       : q,
@@ -36,7 +54,7 @@ define( function () {
                             // Resolving
                         }
 
-                        $rootScope.$broadcast( 'DATASETS_RETRIEVED', data );
+                        $rootScope.$broadcast( events.DATASETS_QUERY, data );
                     });
             }
         };
