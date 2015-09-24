@@ -36,6 +36,7 @@ define( function () {
 
             getEvent    : function ( event ) {
                 switch ( event ) {
+                    /* istanbul ignore next */
                     case 'ERROR' :
                         return events[ this._model.toUpperCase() + '_ERROR' ];
                     case 'QUERYING' :

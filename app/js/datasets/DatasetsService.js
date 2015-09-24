@@ -21,6 +21,7 @@ define( function () {
 
             getEvent    : function ( event ) {
                 switch ( event ) {
+                    /* istanbul ignore next */
                     case 'ERROR' :
                         return events.DATASETS_ERROR;
                     case 'QUERYING' :
