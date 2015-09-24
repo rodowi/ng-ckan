@@ -50,4 +50,10 @@ describe( 'App', function () {
     it ( 'should clear the search query previously set', function () {
         element( by.css( '[ng-click="clearSearch()"]' ) ).click();
     });
+
+    it ( 'should navigate to the application organizations state', function () {
+        element.all( by.css( '.nav-tabs li' ) ).get( 1 ).element( by.tagName( 'a' ) ).click().then( function () {
+            expect( browser.getLocationAbsUrl() ).toMatch( '/instituciones' );
+        });
+    });
 });

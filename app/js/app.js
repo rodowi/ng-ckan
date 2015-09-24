@@ -2,14 +2,20 @@
 
 define( function ( require ) {
 
+    require( 'events' );
+    require( 'common/CommonModule' );
     require( 'datasets/DatasetsModule' );
+    require( 'organizations/OrganizationsModule' );
 
     var app             = angular.module( 'ngCkan', [
             'ngResource',
             'ui.bootstrap.pagination',
             'ui.bootstrap.tpls',
             'ui.router',
-            'DatasetsModule'
+            'App.Events',
+            'CommonModule',
+            'DatasetsModule',
+            'OrganizationsModule'
         ]);
 
     app.config([ '$urlRouterProvider', function ( $urlRouterProvider ) {
@@ -18,6 +24,21 @@ define( function ( require ) {
 
     app.run([ '$rootScope', '$state', function ( $rootScope, $state ) {
         $rootScope.$state   = $state;
+
+        $rootScope.$on( '$stateChangeSuccess', function ( e, toState ) {
+            $( '.nav-tabs li' ).removeClass( 'active' );
+            switch ( toState.name ) {
+                case 'datasets.results' :
+                    $( '#item-datasets' ).addClass( 'active' );
+                    break;
+                case 'groups.results' :
+                    $( '#item-groups' ).addClass( 'active' );
+                    break;
+                case 'organizations.results' :
+                    $( '#item-organizations' ).addClass( 'active' );
+                    break;
+            }
+        });
     }]);
 
     return app;
