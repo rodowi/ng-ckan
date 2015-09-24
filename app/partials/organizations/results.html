@@ -1,0 +1,11 @@
+<p ng-show="searching">Buscando...</p>
+<div class="row stacked">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12" ng-repeat="organization in organizations">
+        <div class="organization-item">
+            <img ng-src="https://raw.githubusercontent.com/mxabierto/assets/master/img/logos/{{ organization.slug }}.png" alt="{{ organization.title }}">
+        </div>
+    </div>
+</div>
+<p class="text-center">
+    <pagination class="pagination-sm" max-size="10" boundary-links="true" rotate="true" total-items="total" items-per-page="limit" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" ng-model="page" ng-change="paginate()"></pagination>
+</p>
