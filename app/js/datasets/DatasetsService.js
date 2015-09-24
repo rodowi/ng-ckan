@@ -23,13 +23,10 @@ define( function () {
                 switch ( event ) {
                     case 'ERROR' :
                         return events.DATASETS_ERROR;
-                        break;
                     case 'QUERYING' :
                         return events.DATASETS_QUERYING;
-                        break;
                     case 'QUERY' :
                         return events.DATASETS_QUERY;
-                        break;
                 }
             },
 

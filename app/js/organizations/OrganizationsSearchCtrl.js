@@ -7,5 +7,5 @@ define( function () {
         $scope.$on( events.ORGANIZATIONS_QUERY, function () {
             $scope.count    = Organizations.getTotal();
         });
-    }
+    };
 });

@@ -38,13 +38,10 @@ define( function () {
                 switch ( event ) {
                     case 'ERROR' :
                         return events[ this._model.toUpperCase() + '_ERROR' ];
-                        break;
                     case 'QUERYING' :
                         return events[ this._model.toUpperCase() + '_QUERYING' ];
-                        break;
                     case 'QUERY' :
                         return events[ this._model.toUpperCase() + '_QUERY' ];
-                        break;
                 }
             },
 
