@@ -8,6 +8,7 @@ define( function () {
                 views       : {
                     'search-container'  : {
                         templateUrl     : 'partials/datasets/search.html',
+                        controller      : 'GroupsSearchCtrl'
                     }
                 }
             })
