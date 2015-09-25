@@ -2,6 +2,7 @@
 
 define( function () {
     return function ( $scope, $location, Ckan ) {
+        Ckan.setModel( 'datasets' );
         var query       = '',
             search      = $location.search(),
             skip        = 0,

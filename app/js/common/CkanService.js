@@ -3,9 +3,9 @@
 define( function () {
     return function ( $rootScope, $resource, events ) {
         var Service = {
-            _total      : 0,
-
             _querying   : '',
+
+            _total      : 0,
 
             _resource   : $resource( 'http://catalogo.datos.gob.mx/api/3/action/:action', null, {
                 datasets                : {
@@ -59,12 +59,16 @@ define( function () {
             },
 
             getTotal    : function () {
-                return this._total;
+                switch ( this._querying ) {
+                    case 'datasets' :
+                        return this._datasets;
+                    case 'groups' :
+                        return this._groups;
+                }
             },
 
             datasets    : function ( q, skip ) {
                 $rootScope.$broadcast( events.DATASETS_QUERYING );
-                this._querying  = 'datasets';
                 return this._resource.datasets({
                         action  : 'package_search',
                         q       : q,
@@ -82,7 +86,6 @@ define( function () {
 
             groups      : function () {
                 $rootScope.$broadcast( events.GROUPS_QUERYING );
-                this._querying  = 'groups';
                 return this._resource.groups({
                         action      : 'group_list',
                         all_fields  : 'true'
@@ -94,6 +97,10 @@ define( function () {
 
                         $rootScope.$broadcast( events.GROUPS_QUERY, data );
                     });
+            },
+
+            setModel    : function ( model ) {
+                this._querying  = model;
             }
         };
 

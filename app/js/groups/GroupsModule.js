@@ -11,5 +11,5 @@ define( function ( require ) {
 
     GroupsModule.controller( 'GroupsResultsCtrl', [ '$scope', '$stateParams', 'CkanService', ResultsCtrl ] );
 
-    GroupsModule.controller( 'GroupsSearchCtrl', [ '$scope', '$location', 'CkanService', GroupsSearchCtrl ] );
+    GroupsModule.controller( 'GroupsSearchCtrl', [ '$scope', 'CkanService', GroupsSearchCtrl ] );
 });
