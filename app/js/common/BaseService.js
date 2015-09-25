@@ -22,7 +22,7 @@ define( function () {
                         transformResponse   : function ( data ) {
                             var response    = angular.fromJson( data );
 
-                            that._total     = response.pagination.count;
+                            that._total     = response.pagination.total;
                             that._page      = response.pagination.page;
                             that._pageSize  = response.pagination.per_page;
 
@@ -54,11 +54,13 @@ define( function () {
                 return this._total;
             },
 
-            query       : function ( q ) {
+            query       : function ( page ) {
                 var that    = this;
 
                 $rootScope.$broadcast( events[ that._model.toUpperCase() + '_QUERYING' ] );
-                return this._resource.query( q,
+                return this._resource.query({
+                        page    : page
+                    },
                     function ( data ) {
                     while ( !data.$resolved ) {
                         // Resolving
