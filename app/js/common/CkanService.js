@@ -33,23 +33,27 @@ define( function () {
             }),
 
             getEvent    : function ( event ) {
+                /* istanbul ignore next */
                 switch ( event ) {
-                    /* istanbul ignore next */
-                    case 'DATASETS_ERROR' :
-                        return events.DATASETS_ERROR;
-                    case 'QUERY' :
-                        switch ( this._querying ) {
-                            case 'datasets' :
-                                return events.DATASETS_QUERY;
-                            case 'groups' :
-                                return events.GROUPS_QUERY;
+                    case 'ERROR' :
+                        if ( this._querying == 'datasets' ) {
+                            return events.DATASETS_ERROR;
+                        } else if ( this._querying == 'groups' ) {
+                            return events.GROUPS_ERROR;
                         }
+                        break;
+                    case 'QUERY' :
+                        if ( this._querying == 'datasets' ) {
+                            return events.DATASETS_QUERY;
+                        } else if ( this._querying == 'groups' ) {
+                            return events.GROUPS_QUERY;
+                        }
+                        break;
                     case 'QUERYING' :
-                        switch ( this._querying ) {
-                            case 'datasets' :
-                                return events.DATASETS_QUERYING;
-                            case 'groups' :
-                                return events.GROUPS_QUERYING;
+                        if ( this._querying == 'datasets' ) {
+                            return events.DATASETS_QUERYING;
+                        } else if ( this._querying == 'groups' ) {
+                            return events.GROUPS_QUERYING;
                         }
                 }
             },
@@ -59,12 +63,7 @@ define( function () {
             },
 
             getTotal    : function () {
-                switch ( this._querying ) {
-                    case 'datasets' :
-                        return this._datasets;
-                    case 'groups' :
-                        return this._groups;
-                }
+                return this._total;
             },
 
             datasets    : function ( q, skip ) {
