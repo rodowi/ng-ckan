@@ -8,6 +8,15 @@ define( function () {
             _total      : 0,
 
             _resource   : $resource( 'http://catalogo.datos.gob.mx/api/3/action/:action', null, {
+                dataset                 : {
+                    method              : 'GET',
+                    isArray             : false,
+                    transformResponse   : function ( data ) {
+                        var response    = angular.fromJson( data );
+
+                        return response.result;
+                    }
+                },
                 datasets                : {
                     method              : 'GET',
                     isArray             : true,
@@ -64,6 +73,21 @@ define( function () {
 
             getTotal    : function () {
                 return this._total;
+            },
+
+            dataset     : function ( id ) {
+                $rootScope.$broadcast( events.DATASETS_RETRIEVING );
+                return this._resource.dataset({
+                        action  : 'package_show',
+                        id      : id
+                    },
+                    function ( data ) {
+                        while( !data.$resolved ) {
+                            // Resolving
+                        }
+
+                        $rootScope.$broadcast( events.DATASETS_RETRIEVED, data );
+                    });
             },
 
             datasets    : function ( q, skip ) {
