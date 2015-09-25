@@ -17,6 +17,10 @@ define( function () {
                 views           : {
                     'datasets-sidebar'  : {
                         templateUrl     : 'partials/datasets/filters.html'
+                    },
+                    'datasets-content'  : {
+                        templateUrl     : 'partials/groups/results.html',
+                        controller      : 'GroupsResultsCtrl'
                     }
                 },
                 reloadOnSearch  : false
