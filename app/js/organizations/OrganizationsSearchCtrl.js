@@ -3,6 +3,7 @@
 define( function () {
     return function ( $scope, $location, Organizations ) {
         var page        = 1,
+            search      = $location.search(),
             retrieve    = function () {
                 Organizations.query( page );
             };
@@ -14,16 +15,16 @@ define( function () {
         $scope.$on( Organizations.getEvent( 'QUERY' ), function () {
             $scope.count    = Organizations.getTotal();
         });
-        $scope.$on( 'PAGE_UPDATED', function ( e, new_page ) {
+        $scope.$on( 'PAGE_UPDATED', function ( e, newPage ) {
             e.preventDefault();
 
-            if ( new_page > 1 ) {
-                $location.search( 'page', new_page );
+            if ( newPage > 1 ) {
+                $location.search( 'page', newPage );
             } else {
                 $location.search( 'page', null );
             }
 
-            page    = new_page;
+            page    = newPage;
             retrieve();
         });
 
