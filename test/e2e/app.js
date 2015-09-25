@@ -68,4 +68,10 @@ describe( 'App', function () {
             expect( browser.getLocationAbsUrl() ).toMatch( '/instituciones' );
         });
     });
+
+    it ( 'should navigate to the application groups state', function () {
+        element.all( by.css( '.nav-tabs li' ) ).get( 2 ).element( by.tagName( 'a' ) ).click().then( function () {
+            expect( browser.getLocationAbsUrl() ).toMatch( '/grupos' );
+        });
+    });
 });

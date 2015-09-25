@@ -1,7 +1,11 @@
 <div id="search-header" class="container-fluid">
     <div class="row">
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-            <h1>Datos</h1>
+            <h1>
+                <span ng-if="$state.is( 'datasets.results' )">Datos</span>
+                <span ng-if="$state.is( 'groups.results' )">Grupos</span>
+                <span ng-if="$state.is( 'organizations.results' )">Instituciones</span>
+            </h1>
             <p>{{ count }} resultados</p>
         </div>
         <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">

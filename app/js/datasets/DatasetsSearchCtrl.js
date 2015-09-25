@@ -1,7 +1,8 @@
 'use strict';
 
 define( function () {
-    return function ( $scope, $location, Datasets ) {
+    return function ( $scope, $location, Ckan ) {
+        Ckan.setModel( 'datasets' );
         var query       = '',
             search      = $location.search(),
             skip        = 0,
@@ -17,7 +18,7 @@ define( function () {
             },
             retrieve    = function () {
                 setQuery();
-                Datasets.query( query, skip );
+                Ckan.datasets( query, skip );
             };
 
         if ( search.q ) {
@@ -41,8 +42,8 @@ define( function () {
 
             retrieve();
         };
-        $scope.$on( Datasets.getEvent( 'QUERY' ), function () {
-            $scope.count    = Datasets.getTotal();
+        $scope.$on( Ckan.getEvent( 'QUERY' ), function () {
+            $scope.count    = Ckan.getTotal();
         });
         $scope.$on( 'PAGE_UPDATED', function ( e, page ) {
             e.preventDefault();
