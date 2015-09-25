@@ -10,7 +10,7 @@ define( function ( require ) {
 
     OrganizationsModule.config( [ '$stateProvider', OrganizationsRouter ] );
 
-    OrganizationsModule.controller( 'OrganizationsResultsCtrl', [ '$scope', '$stateParams', 'OrganizationsService', ResultsCtrl ] );
+    OrganizationsModule.controller( 'OrganizationsResultsCtrl', [ '$scope', '$state', '$stateParams', 'OrganizationsService', ResultsCtrl ] );
 
     OrganizationsModule.controller( 'OrganizationsSearchCtrl', [ '$scope', '$location', 'OrganizationsService', OrganizationsSearchCtrl ] );
 

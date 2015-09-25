@@ -9,7 +9,7 @@ define( function ( require ) {
 
     GroupsModule.config( [ '$stateProvider', GroupsRouter ] );
 
-    GroupsModule.controller( 'GroupsResultsCtrl', [ '$scope', '$stateParams', 'CkanService', ResultsCtrl ] );
+    GroupsModule.controller( 'GroupsResultsCtrl', [ '$scope', '$state', '$stateParams', 'CkanService', ResultsCtrl ] );
 
     GroupsModule.controller( 'GroupsSearchCtrl', [ '$scope', 'CkanService', GroupsSearchCtrl ] );
 });

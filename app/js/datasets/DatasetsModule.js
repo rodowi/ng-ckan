@@ -9,7 +9,7 @@ define( function ( require ) {
 
     DatasetsModule.config( [ '$stateProvider', DatasetsRouter ] );
 
-    DatasetsModule.controller( 'DatasetsResultsCtrl', [ '$scope', '$stateParams', 'CkanService', ResultsCtrl ] );
+    DatasetsModule.controller( 'DatasetsResultsCtrl', [ '$scope', '$state', '$stateParams', 'CkanService', ResultsCtrl ] );
 
     DatasetsModule.controller( 'DatasetsSearchCtrl', [ '$scope', '$location', 'CkanService', DatasetsSearchCtrl ] );
 });
