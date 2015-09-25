@@ -5,6 +5,7 @@ define( function ( require ) {
     require( 'events' );
     require( 'common/CommonModule' );
     require( 'datasets/DatasetsModule' );
+    require( 'groups/GroupsModule' );
     require( 'organizations/OrganizationsModule' );
 
     var app             = angular.module( 'ngCkan', [
@@ -15,6 +16,7 @@ define( function ( require ) {
             'App.Events',
             'CommonModule',
             'DatasetsModule',
+            'GroupsModule',
             'OrganizationsModule'
         ]);
 
