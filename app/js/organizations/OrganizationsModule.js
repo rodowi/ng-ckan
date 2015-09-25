@@ -12,7 +12,7 @@ define( function ( require ) {
 
     OrganizationsModule.controller( 'OrganizationsResultsCtrl', [ '$scope', '$stateParams', 'OrganizationsService', ResultsCtrl ] );
 
-    OrganizationsModule.controller( 'OrganizationsSearchCtrl', [ '$scope', 'events', 'OrganizationsService', OrganizationsSearchCtrl ] );
+    OrganizationsModule.controller( 'OrganizationsSearchCtrl', [ '$scope', '$location', 'OrganizationsService', OrganizationsSearchCtrl ] );
 
     OrganizationsModule.factory( 'OrganizationsService', [ 'BaseService', OrganizationsService ] );
 });
