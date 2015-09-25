@@ -5,6 +5,8 @@ define( function () {
         var Service = {
             _total      : 0,
 
+            _querying   : '',
+
             _resource   : $resource( 'http://catalogo.datos.gob.mx/api/3/action/:action', null, {
                 query   : {
                     method              : 'GET',
@@ -22,12 +24,18 @@ define( function () {
             getEvent    : function ( event ) {
                 switch ( event ) {
                     /* istanbul ignore next */
-                    case 'ERROR' :
+                    case 'DATASETS_ERROR' :
                         return events.DATASETS_ERROR;
-                    case 'QUERYING' :
-                        return events.DATASETS_QUERYING;
                     case 'QUERY' :
-                        return events.DATASETS_QUERY;
+                        switch ( this._querying ) {
+                            case 'datasets' :
+                                return events.DATASETS_QUERY;
+                        }
+                    case 'QUERYING' :
+                        switch ( this._querying ) {
+                            case 'datasets' :
+                                return events.DATASETS_QUERYING;
+                        }
                 }
             },
 
@@ -39,8 +47,9 @@ define( function () {
                 return this._total;
             },
 
-            query       : function ( q, skip ) {
+            datasets    : function ( q, skip ) {
                 $rootScope.$broadcast( events.DATASETS_QUERYING );
+                this._querying  = 'datasets';
                 return this._resource.query({
                         action  : 'package_search',
                         q       : q,
