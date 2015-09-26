@@ -13,6 +13,11 @@ define( function () {
                 id  : dataset
             });
         };
+        $scope.selectGroup          = function ( group ) {
+            $state.go( 'groups.details', {
+                id  : group
+            });
+        };
         $scope.selectOrganization   = function ( organization ) {
             $state.go( 'organizations.details', {
                 id  : organization

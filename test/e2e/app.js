@@ -92,4 +92,22 @@ describe( 'App', function () {
             expect( browser.getLocationAbsUrl() ).toMatch( '/grupos' );
         });
     });
+
+    it ( 'should navigate to the group details state', function () {
+        element.all( by.css( '.group-item' ) ).get( 1 ).click().then( function () {
+            expect( browser.getLocationAbsUrl() ).toMatch( '/grupos' );
+        });
+    });
+
+    it ( 'should filter and clear the group available resources', function () {
+        element( by.css( '#filter-keyword' ) ).sendKeys( 'obra' );
+
+        element( by.css( '[ng-click="clear()"]' ) ).click();
+    });
+
+    it ( 'should navigate to the organization first dataset', function () {
+        element.all( by.css( '.data > tbody > tr' ) ).first().click().then( function () {
+            expect( browser.getLocationAbsUrl() ).toMatch( '/conjuntos' );
+        });
+    });
 });

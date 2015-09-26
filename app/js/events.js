@@ -9,6 +9,8 @@ define( function () {
         DATASETS_QUERY              : 'datasets_query',
         DATASETS_QUERYING           : 'datasets_querying',
         GROUPS_ERROR                : 'groups_error',
+        GROUPS_RETRIEVED            : 'groups_retrieved',
+        GROUPS_RETRIEVING           : 'groups_retrieving',
         GROUPS_QUERY                : 'groups_query',
         GROUPS_QUERYING             : 'groups_querying',
         ORGANIZATIONS_ERROR         : 'organizations_error',
