@@ -38,6 +38,7 @@ define( function ( require ) {
                     $( '#item-groups' ).addClass( 'active' );
                     break;
                 case 'organizations.results' :
+                case 'organizations.details' :
                     $( '#item-organizations' ).addClass( 'active' );
                     break;
             }
