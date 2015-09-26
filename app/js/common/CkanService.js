@@ -28,6 +28,15 @@ define( function () {
                         return response.result.results;
                     }
                 },
+                group                   : {
+                    method              : 'GET',
+                    isArray             : false,
+                    transformResponse   : function ( data ) {
+                        var response    = angular.fromJson( data );
+
+                        return response.result;
+                    }
+                },
                 groups                  : {
                     method              : 'GET',
                     isArray             : true,
@@ -130,6 +139,22 @@ define( function () {
                         }
 
                         $rootScope.$broadcast( events.DATASETS_QUERY, data );
+                    });
+            },
+
+            group           : function ( group ) {
+                $rootScope.$broadcast( events.GROUPS_RETRIEVING );
+                return this._resource.group({
+                        action      : 'group_show',
+                        all_fields  : 'true',
+                        id          : group
+                    },
+                    function ( data ) {
+                        while( !data.$resolved ) {
+                            // Resolving
+                        }
+
+                        $rootScope.$broadcast( events.GROUPS_RETRIEVED, data );
                     });
             },
 
