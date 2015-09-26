@@ -24,6 +24,15 @@ define( function () {
                     }
                 },
                 reloadOnSearch  : false
+            })
+            .state( 'datasets.details', {
+                url             : '/conjuntos/:id?page',
+                views           : {
+                    'search-container@' : {
+                        templateUrl     : 'partials/datasets/details.html',
+                        controller      : 'DatasetsDetailsCtrl'
+                    }
+                }
             });
     };
 });

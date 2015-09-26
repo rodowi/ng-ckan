@@ -75,6 +75,7 @@ header                                      { padding-top: 20px; }
 #search-header p                            { margin-bottom: 0; }
 #datasets-container                         { position: relative; overflow: hidden; }
 #datasets-content                           { padding: 30px; }
+#datasets-content table > tbody > tr        { cursor: pointer; }
 #datasets-sidebar                           { padding-top: 20px; padding-bottom: 20px; background-color: #474747; }
 #datasets-sidebar > h3,
 #datasets-sidebar > h4                      { margin-top: 0; margin-bottom: 10px; font-size: 13px; text-transform: uppercase; color: #7c7c7c; }
@@ -96,6 +97,22 @@ header                                      { padding-top: 20px; }
 #datasets-sidebar ul > li.filter-culture        { background-image: url(../img/ic-culture.png); }
 #datasets-sidebar ul > li.filter-tourism        { background-image: url(../img/ic-tourism.png); }
 #datasets-sidebar ul > li.filter-other          { background-image: url(../img/ic-other.png); }
+
+/*********************************
+    DATASETS SECTION STYLES
+*********************************/
+.dataset-details                            { margin-top: 50px; padding-bottom: 50px; }
+.dataset-details .organization-image        { height: 170px; margin-bottom: 30px; padding: 15px; background-color: #eee; }
+.dataset-details .organization-image > img  { vertical-align: middle; }
+.dataset-details h1                         { margin-bottom: 30px; }
+.dataset-details h4                         { margin: 20px 0; font-size: 14px; font-weight: 700; color: #474747; }
+.dataset-details h5                         { margin: 30px 0; text-transform: uppercase; }
+.dataset-details ul                         { padding-left: 0; list-style: none; overflow: hidden; }
+.dataset-details .dataset-resources > li    { background-color: #eee; margin-bottom: 30px; padding: 20px; position: relative; }
+.dataset-details .dataset-resources li a    { display: block; font-size: 14px; font-weight: 600; color: #474747; overflow: hidden; }
+.dataset-details .dataset-resources span    { padding: 20px; background-color: #d8d8d8; position: absolute; right: 0; top: 0; bottom: 0; }
+.dataset-details .dataset-tags > li         { margin-right: 10px; margin-bottom: 10px; padding: 5px 10px; float: left; background-color: #0c9; color: #fff; }
+.dataset-details .table > tbody > tr > td   { font-size: 12px; }
 
 /*********************************
     ORGANIZATIONS STYLES

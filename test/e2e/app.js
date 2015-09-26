@@ -51,6 +51,18 @@ describe( 'App', function () {
         element( by.css( '[ng-click="clearSearch()"]' ) ).click();
     });
 
+    it ( 'should navigate to the datasets details state', function () {
+        element.all( by.css( '#datasets-content table > tbody > tr' ) ).first().click().then( function () {
+            expect( browser.getLocationAbsUrl() ).toMatch( '/conjuntos' );
+        });
+    });
+
+    it ( 'should filter and clear the dataset available resources', function () {
+        element( by.css( '#filter-keyword' ) ).sendKeys( 'obra' );
+
+        element( by.css( '[ng-click="clear()"]' ) ).click();
+    });
+
     it ( 'should navigate to the application organizations state', function () {
         element.all( by.css( '.nav-tabs li' ) ).get( 1 ).element( by.tagName( 'a' ) ).click().then( function () {
             expect( browser.getLocationAbsUrl() ).toMatch( '/instituciones' );

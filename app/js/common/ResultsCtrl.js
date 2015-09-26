@@ -1,13 +1,19 @@
 'use strict';
 
 define( function () {
-    return function ( $scope, $stateParams, Model ) {
-        var paginating      = false;
-        $scope.searching    = true;
-        $scope.paginate     = function () {
+    return function ( $scope, $state, $stateParams, Model ) {
+        var paginating          = false;
+        $scope.searching        = true;
+        $scope.paginate         = function () {
             paginating  = true;
             $scope.$emit( 'PAGE_UPDATED', $scope.page );
         };
+        $scope.selectDataset    = function ( dataset ) {
+            $state.go( 'datasets.details', {
+                id  : dataset
+            });
+        };
+
         $scope.$on( Model.getEvent( 'QUERYING' ), function () {
             $scope.searching    = true;
         });
