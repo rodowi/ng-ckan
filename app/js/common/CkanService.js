@@ -39,6 +39,15 @@ define( function () {
                         return response.result;
                     }
                 },
+                organization            : {
+                    method              : 'GET',
+                    isArray             : false,
+                    transformResponse   : function ( data ) {
+                        var response    = angular.fromJson( data );
+
+                        return response.result;
+                    }
+                },
                 organizations           : {
                     method              : 'GET',
                     isArray             : true,
@@ -136,6 +145,22 @@ define( function () {
                         }
 
                         $rootScope.$broadcast( events.GROUPS_QUERY, data );
+                    });
+            },
+
+            organization    : function ( organization ) {
+                $rootScope.$broadcast( events.ORGANIZATIONS_RETRIEVING );
+                return this._resource.organization({
+                        action      : 'organization_show',
+                        all_fields  : true,
+                        id          : organization
+                    },
+                    function ( data ) {
+                        while( !data.$resolved ) {
+                            // Resolving
+                        }
+
+                        $rootScope.$broadcast( events.ORGANIZATIONS_RETRIEVED, data );
                     });
             },
 
