@@ -81,6 +81,24 @@ describe( 'App', function () {
         });
     });
 
+    it ( 'should navigate to the organization details state', function () {
+        element.all( by.css( '.organization-item' ) ).first().click().then( function () {
+            expect( browser.getLocationAbsUrl() ).toMatch( '/instituciones' );
+        });
+    });
+
+    it ( 'should filter and clear the organization available resources', function () {
+        element( by.css( '#filter-keyword' ) ).sendKeys( 'obra' );
+
+        element( by.css( '[ng-click="clear()"]' ) ).click();
+    });
+
+    it ( 'should navigate to the organization first dataset', function () {
+        element.all( by.css( '.data > tbody > tr' ) ).first().click().then( function () {
+            expect( browser.getLocationAbsUrl() ).toMatch( '/conjuntos' );
+        });
+    });
+
     it ( 'should navigate to the application groups state', function () {
         element.all( by.css( '.nav-tabs li' ) ).get( 2 ).element( by.tagName( 'a' ) ).click().then( function () {
             expect( browser.getLocationAbsUrl() ).toMatch( '/grupos' );
