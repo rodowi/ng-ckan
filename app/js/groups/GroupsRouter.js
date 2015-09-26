@@ -24,6 +24,15 @@ define( function () {
                     }
                 },
                 reloadOnSearch  : false
+            })
+            .state( 'groups.details', {
+                url             : '/grupos/:id?page',
+                views           : {
+                    'search-container@' : {
+                        templateUrl     : 'partials/groups/details.html',
+                        controller      : 'GroupsDetailsCtrl'
+                    }
+                }
             });
     };
 });
