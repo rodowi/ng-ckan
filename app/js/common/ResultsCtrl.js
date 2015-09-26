@@ -9,7 +9,9 @@ define( function () {
             $scope.$emit( 'PAGE_UPDATED', $scope.page );
         };
         $scope.selectDataset    = function ( dataset ) {
-            
+            $state.go( 'datasets.details', {
+                id  : dataset
+            });
         };
 
         $scope.$on( Model.getEvent( 'QUERYING' ), function () {

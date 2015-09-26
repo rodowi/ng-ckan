@@ -1,0 +1,54 @@
+<div class="container-fluid dataset-details">
+    <div class="row">
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+            <div class="organization-image">
+                <img ng-src="{{ dataset.organization.image_url }}" alt="{{ dataset.organization.title }}">
+            </div>
+            <p class="text-center"><img src="https://raw.githubusercontent.com/mxabierto/assets/master/img/ic-libre-uso-dark.png" alt="Libre Uso MX"></p>
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+            <h1>{{ dataset.title }}</h1>
+            <p>{{ dataset.notes }}</p>
+            <h5>Datos y Recursos</h5>
+            <ul class="dataset-resources">
+                <li ng-repeat="resource in dataset.resources">
+                    <a href="{{ resource.url }}">{{ resource.name }}<span>Explorar</span></a>
+                </li>
+            </ul>
+            <ul class="dataset-tags">
+                <li ng-repeat="tag in dataset.tags">{{ tag.name }}</li>
+            </ul>
+            <h4>Información Adicional</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Campo</th>
+                        <th>Valor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Última actualización</td>
+                        <td>{{ dataset.metadata_modified | date : 'MMMM dd, yyyy' }}</td>
+                    </tr>
+                    <tr>
+                        <td>Registro en el sitio</td>
+                        <td>{{ dataset.revision_timestamp | date : 'MMMM dd, yyyy' }}</td>
+                    </tr>
+                    <tr>
+                        <td>Fecha de última modificación de los datos</td>
+                        <td>{{ dataset.metadata_created | date : 'MMMM dd, yyyy' }}</td>
+                    </tr>
+                    <tr>
+                        <td>Correo de contact</td>
+                        <td>{{ publisher_email }}</td>
+                    </tr>
+                    <tr>
+                        <td>Publicador</td>
+                        <td>{{ publisher_name }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
