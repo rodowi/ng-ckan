@@ -31,6 +31,7 @@ define( function ( require ) {
             $( '.nav-tabs li' ).removeClass( 'active' );
             switch ( toState.name ) {
                 case 'datasets.results' :
+                case 'datasets.details' :
                     $( '#item-datasets' ).addClass( 'active' );
                     break;
                 case 'groups.results' :
