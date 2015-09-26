@@ -19,7 +19,7 @@ define( function () {
             $( '.organization-image img' ).load( function () {
                 $( this ).css({
                     'margin-top'    : ( $( '.organization-image' ).height() - $( this ).height() ) / 2
-                })
+                });
             });
         });
     };
