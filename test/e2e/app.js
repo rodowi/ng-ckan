@@ -69,18 +69,6 @@ describe( 'App', function () {
         });
     });
 
-    it ( 'should navigate to the second page of the results', function () {
-        element.all( by.css( '.pagination-sm li' ) ).get( 3 ).element( by.tagName( 'a' ) ).click();
-    });
-
-    it ( 'should mantain the page after a refresh and navigate back to the first page', function () {
-        browser.refresh();
-
-        element.all( by.css( '.pagination-sm li' ) ).get( 2 ).element( by.tagName( 'a' ) ).click().then( function () {
-            expect( browser.getLocationAbsUrl() ).toMatch( '/instituciones' );
-        });
-    });
-
     it ( 'should navigate to the organization details state', function () {
         element.all( by.css( '.organization-item' ) ).first().click().then( function () {
             expect( browser.getLocationAbsUrl() ).toMatch( '/instituciones' );
