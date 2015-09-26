@@ -2,15 +2,20 @@
 
 define( function () {
     return function ( $scope, $state, $stateParams, Model ) {
-        var paginating          = false;
-        $scope.searching        = true;
-        $scope.paginate         = function () {
+        var paginating              = false;
+        $scope.searching            = true;
+        $scope.paginate             = function () {
             paginating  = true;
             $scope.$emit( 'PAGE_UPDATED', $scope.page );
         };
-        $scope.selectDataset    = function ( dataset ) {
+        $scope.selectDataset        = function ( dataset ) {
             $state.go( 'datasets.details', {
                 id  : dataset
+            });
+        };
+        $scope.selectOrganization   = function ( organization ) {
+            $state.go( 'organizations.details', {
+                id  : organization
             });
         };
 

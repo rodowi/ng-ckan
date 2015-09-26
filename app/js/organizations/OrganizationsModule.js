@@ -2,17 +2,17 @@
 
 define( function ( require ) {
     var ResultsCtrl                 = require( 'common/ResultsCtrl' );
+    var OrganizationsDetailsCtrl    = require( 'organizations/OrganizationsDetailsCtrl' );
     var OrganizationsRouter         = require( 'organizations/OrganizationsRouter' );
     var OrganizationsSearchCtrl     = require( 'organizations/OrganizationsSearchCtrl' );
-    var OrganizationsService        = require( 'organizations/OrganizationsService' );
 
     var OrganizationsModule     = angular.module( 'OrganizationsModule', []);
 
     OrganizationsModule.config( [ '$stateProvider', OrganizationsRouter ] );
 
-    OrganizationsModule.controller( 'OrganizationsResultsCtrl', [ '$scope', '$state', '$stateParams', 'OrganizationsService', ResultsCtrl ] );
+    OrganizationsModule.controller( 'OrganizationsDetailsCtrl', [ '$scope', '$state', '$stateParams', 'events', 'CkanService', OrganizationsDetailsCtrl ] );
 
-    OrganizationsModule.controller( 'OrganizationsSearchCtrl', [ '$scope', '$location', 'OrganizationsService', OrganizationsSearchCtrl ] );
+    OrganizationsModule.controller( 'OrganizationsResultsCtrl', [ '$scope', '$state', '$stateParams', 'CkanService', ResultsCtrl ] );
 
-    OrganizationsModule.factory( 'OrganizationsService', [ 'BaseService', OrganizationsService ] );
+    OrganizationsModule.controller( 'OrganizationsSearchCtrl', [ '$scope', '$location', 'CkanService', OrganizationsSearchCtrl ] );
 });

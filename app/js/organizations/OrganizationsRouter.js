@@ -24,6 +24,15 @@ define( function () {
                     }
                 },
                 reloadOnSearch  : false
+            })
+            .state( 'organizations.details', {
+                url             : '/instituciones/:id?page',
+                views           : {
+                    'search-container@' : {
+                        templateUrl     : 'partials/organizations/details.html',
+                        controller      : 'OrganizationsDetailsCtrl'
+                    }
+                }
             });
     };
 });

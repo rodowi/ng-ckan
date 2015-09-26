@@ -69,15 +69,21 @@ describe( 'App', function () {
         });
     });
 
-    it ( 'should navigate to the second page of the results', function () {
-        element.all( by.css( '.pagination-sm li' ) ).get( 3 ).element( by.tagName( 'a' ) ).click();
+    it ( 'should navigate to the organization details state', function () {
+        element.all( by.css( '.organization-item' ) ).first().click().then( function () {
+            expect( browser.getLocationAbsUrl() ).toMatch( '/instituciones' );
+        });
     });
 
-    it ( 'should mantain the page after a refresh and navigate back to the first page', function () {
-        browser.refresh();
+    it ( 'should filter and clear the organization available resources', function () {
+        element( by.css( '#filter-keyword' ) ).sendKeys( 'obra' );
 
-        element.all( by.css( '.pagination-sm li' ) ).get( 2 ).element( by.tagName( 'a' ) ).click().then( function () {
-            expect( browser.getLocationAbsUrl() ).toMatch( '/instituciones' );
+        element( by.css( '[ng-click="clear()"]' ) ).click();
+    });
+
+    it ( 'should navigate to the organization first dataset', function () {
+        element.all( by.css( '.data > tbody > tr' ) ).first().click().then( function () {
+            expect( browser.getLocationAbsUrl() ).toMatch( '/conjuntos' );
         });
     });
 
