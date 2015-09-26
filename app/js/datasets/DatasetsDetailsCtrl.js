@@ -4,6 +4,9 @@ define( function () {
     return function ( $scope, $stateParams, events, Ckan ) {
         $scope.dataset  = Ckan.dataset( $stateParams.id );
 
+        $scope.clear    = function () {
+            $scope.filter   = '';
+        };
         $scope.$on( events.DATASETS_RETRIEVED, function () {
             for ( var i = 0; i < $scope.dataset.extras.length; i++ ) {
                 if ( $scope.dataset.extras[i].key == 'dcat_publisher_email' ) {

@@ -1,3 +1,19 @@
+<div id="search-header" class="container-fluid">
+    <div class="row">
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+            <h1>Datos</h1>
+            <p>{{ dataset.num_resources }} resultados</p>
+        </div>
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+            <form class="form search-form">
+                <div class="form-group">
+                    <input type="text" name="keyword" id="filter-keyword" class="form-control" placeholder="Buscar" ng-model="filter">
+                    <span class="glyphicon glyphicon-remove" ng-click="clear()"></span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <div class="container-fluid dataset-details">
     <div class="row">
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
@@ -11,7 +27,7 @@
             <p>{{ dataset.notes }}</p>
             <h5>Datos y Recursos</h5>
             <ul class="dataset-resources">
-                <li ng-repeat="resource in dataset.resources">
+                <li ng-repeat="resource in dataset.resources | filter:filter">
                     <a href="{{ resource.url }}">{{ resource.name }}<span>Explorar</span></a>
                 </li>
             </ul>
