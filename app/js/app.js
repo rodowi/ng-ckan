@@ -35,6 +35,7 @@ define( function ( require ) {
                     $( '#item-datasets' ).addClass( 'active' );
                     break;
                 case 'groups.results' :
+                case 'groups.details' :
                     $( '#item-groups' ).addClass( 'active' );
                     break;
                 case 'organizations.results' :
