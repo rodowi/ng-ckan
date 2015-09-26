@@ -3,11 +3,11 @@
 define( function () {
     return function ( $rootScope, $resource, events ) {
         var Service = {
-            _querying   : '',
+            _querying       : '',
 
-            _total      : 0,
+            _total          : 0,
 
-            _resource   : $resource( 'http://catalogo.datos.gob.mx/api/3/action/:action', null, {
+            _resource       : $resource( 'http://catalogo.datos.gob.mx/api/3/action/:action', null, {
                 dataset                 : {
                     method              : 'GET',
                     isArray             : false,
@@ -38,10 +38,21 @@ define( function () {
 
                         return response.result;
                     }
+                },
+                organizations           : {
+                    method              : 'GET',
+                    isArray             : true,
+                    transformResponse   : function ( data ) {
+                        var response    = angular.fromJson( data );
+
+                        Service._total  = response.result.length;
+
+                        return response.result;
+                    }
                 }
             }),
 
-            getEvent    : function ( event ) {
+            getEvent        : function ( event ) {
                 /* istanbul ignore next */
                 switch ( event ) {
                     case 'ERROR' :
@@ -49,6 +60,8 @@ define( function () {
                             return events.DATASETS_ERROR;
                         } else if ( this._querying == 'groups' ) {
                             return events.GROUPS_ERROR;
+                        } else if ( this._querying == 'organizations' ) {
+                            return events.ORGANIZATIONS_ERROR;
                         }
                         break;
                     case 'QUERY' :
@@ -56,6 +69,8 @@ define( function () {
                             return events.DATASETS_QUERY;
                         } else if ( this._querying == 'groups' ) {
                             return events.GROUPS_QUERY;
+                        } else if ( this._querying == 'organizations' ) {
+                            return events.ORGANIZATIONS_QUERY;
                         }
                         break;
                     case 'QUERYING' :
@@ -63,19 +78,21 @@ define( function () {
                             return events.DATASETS_QUERYING;
                         } else if ( this._querying == 'groups' ) {
                             return events.GROUPS_QUERYING;
+                        } else if ( this._querying == 'organizations' ) {
+                            return events.ORGANIZATIONS_QUERYING;
                         }
                 }
             },
 
-            getPageSize : function () {
+            getPageSize     : function () {
                 return 10;
             },
 
-            getTotal    : function () {
+            getTotal        : function () {
                 return this._total;
             },
 
-            dataset     : function ( id ) {
+            dataset         : function ( id ) {
                 $rootScope.$broadcast( events.DATASETS_RETRIEVING );
                 return this._resource.dataset({
                         action  : 'package_show',
@@ -90,7 +107,7 @@ define( function () {
                     });
             },
 
-            datasets    : function ( q, skip ) {
+            datasets        : function ( q, skip ) {
                 $rootScope.$broadcast( events.DATASETS_QUERYING );
                 return this._resource.datasets({
                         action  : 'package_search',
@@ -107,7 +124,7 @@ define( function () {
                     });
             },
 
-            groups      : function () {
+            groups          : function () {
                 $rootScope.$broadcast( events.GROUPS_QUERYING );
                 return this._resource.groups({
                         action      : 'group_list',
@@ -122,7 +139,22 @@ define( function () {
                     });
             },
 
-            setModel    : function ( model ) {
+            organizations   : function () {
+                $rootScope.$broadcast( events.ORGANIZATIONS_QUERYING );
+                return this._resource.organizations({
+                        action      : 'organization_list',
+                        all_fields  : true
+                    },
+                    function ( data ) {
+                        while( !data.$resolved ) {
+                            // Resolving
+                        }
+
+                        $rootScope.$broadcast( events.ORGANIZATIONS_QUERY, data );
+                    });
+            },
+
+            setModel        : function ( model ) {
                 this._querying  = model;
             }
         };
